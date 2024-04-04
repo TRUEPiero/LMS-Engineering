@@ -1,0 +1,157 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings: "slnt" 0;
+}
+
+body {
+    max-width: 1920px;
+    margin: auto;
+}
+
+.fw-800 {
+    letter-spacing: 2px;
+    font-weight: 800;
+    font-size: 34px;
+}
+
+.fw-400 {
+    font-weight: 400;
+    font-size: 28px;
+}
+
+.fw-200 {
+    letter-spacing: -1px;
+    font-size: 18px;
+    font-weight: 200;
+}
+
+.center {
+    width: 90%;
+    margin: auto;
+}
+
+.above_all {
+    background-image: url("../images/main-background.svg");
+}
+
+header {
+    color: white;
+    padding: 0 50px 50px 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.block-above-1 {
+    padding-top: 50px;
+}
+
+header a.main_link {
+    outline: none;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+header a.main_link:link, header a.main_link:visited{
+    color: #ffffff;
+}
+
+/* header a:focus, header a:hover, header a:active {
+    color:#FF6500;
+} */
+
+.above_links {
+    padding: 0 0 0 14px;
+}
+
+li a {
+    text-decoration : none;
+    color : #424242;
+}
+
+nav {
+    background: #ffffff;
+    border-radius: 0 0 5px 5px;
+}
+
+span {
+    padding : 10px 20px;
+    background : #ffffff;
+    color : #424242;
+    cursor : pointer;
+    display: block;
+    font-weight: 600;
+    font-size: 18px;
+    border-top: 10px none #424242;
+    border-right: 1px solid #424242;
+    border-bottom: 1px solid #424242;
+    border-left: 1px solid #424242;
+    border-radius: 0 0 5px 5px;
+}
+
+.slide {
+    width:90%;
+    height:0px;
+    overflow: hidden;
+    text-align: center;
+    transition: height .1s ease;
+    margin: auto;
+}
+
+.slide li {
+    padding : 10px;
+}
+
+#touch {
+    position: absolute;
+    opacity: 0;
+    height: 0px;
+}
+
+#touch:checked + .slide {
+    height: 100%;
+}
+
+/* ------------------------------------------------- */
+
+main {
+    background-color: rgb(255, 255, 255);
+    border-radius: 50px;
+    height: 1000px;
+    padding: 50px 0;
+}
+
+.main-title {
+    margin: 0 0 20px 0;
+}
+
+.page_education {
+    background-color: rgb(255, 255, 255);
+    width: 80%;
+    margin: auto;
+}
+
+.page_exercise {
+    background-color: rgb(255, 255, 255);
+    width: 80%;
+    margin: auto;
+}
+
+/* ------------------------------------------------- */
+footer {
+    background-image: url("../images/main-background.svg");
+	background-size: cover;
+    color: white;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+footer p {
+    font-size: 18px;
+    font-weight: 200;
+}

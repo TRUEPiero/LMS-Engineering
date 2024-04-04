@@ -1,21 +1,29 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseNotFound
-from django.template.loader import render_to_string
 
 # Create your views here.
 def index(request):
     if request.GET:    # Проверка сессии в куках
         return redirect("login", permanent=True)    # Переадрисация на страницу авторизации
 
-    # template_string = render_to_string('Study/index.html')
-    # return HttpResponse(template_string)
-    return render(request,'Study/index.html')
-    # return HttpResponse(f"Главная страница. Тут будет список учебных материалов.")
+    exercise = ['Задание 1','Задание 2', 'Задание 3', 'Задание 4']
+
+    options = {
+        'title': 'LMS Engineering',
+        'exercise': exercise
+        }
+    return render(request,'Study/index.html', options)
 
 
-def show_exercise(reqest, Ex_id):
-    print(reqest.GET)
-    return HttpResponse(f'Страница задания<br>Страница №{Ex_id}')
+def show_exercise(request, Ex_id):
+
+    options = {
+        'title': 'Задание ' + str(Ex_id),
+        'Ex_id':Ex_id
+    }
+
+    return render(request, 'Study/exercise.html', options)
+    # return HttpResponse(f'Страница задания<br>Страница №{Ex_id}')
 
 
 def page_not_found(request, exception):

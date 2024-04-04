@@ -1,17 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LMS Engineering</title>
-</head>
-<body>
-    <header>
-        <h1>LMS Engineering</h1>
-        <p>Электронный образовательный ресурс</p>
-    </header>
+{% extends "base.html" %}
+
+{% block content %}
     <main>
-        <p>Задание</p>
+        <div class="page_education">
+            <p class='fw-400 main-title'>ОБУЧЕНИЕ</p>
+            {% for i in exercise %}
+                {% comment %} {% if forloop.first %}
+
+                {% endif %} {% endcomment %}
+                <p>{{i}}</p>
+            {% endfor %}
+        </div>
     </main>
-</body>
-</html>
+{% endblock %}
