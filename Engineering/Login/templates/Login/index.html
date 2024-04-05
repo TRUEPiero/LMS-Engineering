@@ -1,16 +1,53 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href={% static "Login\css\style.css" %}>
     <title>Login</title>
 </head>
 <body>
-    <h1>Страница авторизации пользователя</h1>
+    <main>
+        <div class="main-block">
+            <div class="block-above-1">
+                <img src={% static "Study\images\logo.svg" %} alt="logo">
+                <div class="above_links">
+                    <p class='fw-400'>LMS</p>
+                    <p class='fw-400'>Engineering</p>
+                    <p class='fw-100'>Электронный образовательный ресурс</p>
+                </div>
+            </div>
+            <div class="block-form">
+                <form class="login-form" action='' method='post'>
+                    <div class="form-input-material">
+                        <p>АВТОРИЗАЦИЯ</p>
+                    </div>
+                    <div class="form-input-material">
+                        <input type="text" name="username" id="username" placeholder="ЛОГИН" autocomplete="off" class="form-control-material" required />
+                    </div>
+                    <div class="form-input-material">
+                        <input type="password" name="password" id="password" placeholder="ПАРОЛЬ" autocomplete="off" class="form-control-material" required />
+                    </div>
+                    <div class="form-input-material">
+                        <input type="checkbox" name="forgot" id="forgot">
+                        <label for="gorgot">Запомнить меня</label>
+
+                        <a href='#'>Забыли пароль?</a>
+                    </div>
+                    <div class="form-input-material">
+                        <button type="submit" class="btn btn-primary btn-ghost">Login</button>
+                    </div>
+                  </form>
+            </div>
+        </div>
+    </main>
+    {% comment %} <h1>Страница авторизации пользователя</h1>
     <input type="text">
     <br>
     <input type="text">
     <br>
-    <input type="button" value="Вход">
+    <input type="button" value="Вход"> {% endcomment %}
 </body>
 </html>

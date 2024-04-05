@@ -8,7 +8,7 @@
                 {% comment %} {% if forloop.first %}
 
                 {% endif %} {% endcomment %}
-                <p>{{i}}</p>
+                <a href={% url "exercise" i|last %}>{{i}}</a>
             {% endfor %}
         </div>
     </main>
