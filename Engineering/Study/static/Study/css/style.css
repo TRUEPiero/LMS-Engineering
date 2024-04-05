@@ -8,7 +8,7 @@
 }
 
 body {
-    max-width: 1920px;
+    /* max-width: 1920px; */
     margin: auto;
 }
 
@@ -117,30 +117,22 @@ span {
 }
 
 /* ------------------------------------------------- */
-
 main {
     background-color: rgb(255, 255, 255);
     border-radius: 50px;
-    height: 1000px;
     padding: 50px 0;
+    min-height: calc(100vh - 41.55px);
 }
 
 .main-title {
     margin: 0 0 20px 0;
 }
 
-.page_education {
-    background-color: rgb(255, 255, 255);
-    width: 80%;
+.under-main {
+    width: 65%;
+    max-width: 987.48px;
     margin: auto;
 }
-
-.page_exercise {
-    background-color: rgb(255, 255, 255);
-    width: 80%;
-    margin: auto;
-}
-
 /* ------------------------------------------------- */
 footer {
     background-image: url("../images/main-background.svg");
@@ -149,6 +141,7 @@ footer {
     display: flex;
     justify-content: center;
     padding: 10px 0;
+
 }
 
 footer p {

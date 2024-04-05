@@ -21,7 +21,8 @@ from Study import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('Study.urls')),
-    path('login/', include('Login.urls'))
+    path('login/', include('Login.urls')),
+    path('profile/', include('Profile.urls'))
 ]
 
 handler404 = views.page_not_found

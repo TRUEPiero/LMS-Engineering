@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href={% static "Login\css\style.css" %}>
-    <title>Login</title>
+    <title>Авторизация</title>
 </head>
 <body>
     <main>
@@ -21,33 +21,30 @@
             </div>
             <div class="block-form">
                 <form class="login-form" action='' method='post'>
-                    <div class="form-input-material">
-                        <p>АВТОРИЗАЦИЯ</p>
+                    <div class="form-input-material block-input">
+                        <p class='fw-300'>АВТОРИЗАЦИЯ</p>
                     </div>
-                    <div class="form-input-material">
+                    <div class="form-input-material block-input">
                         <input type="text" name="username" id="username" placeholder="ЛОГИН" autocomplete="off" class="form-control-material" required />
                     </div>
-                    <div class="form-input-material">
+                    <div class="form-input-material block-input">
                         <input type="password" name="password" id="password" placeholder="ПАРОЛЬ" autocomplete="off" class="form-control-material" required />
                     </div>
-                    <div class="form-input-material">
-                        <input type="checkbox" name="forgot" id="forgot">
-                        <label for="gorgot">Запомнить меня</label>
-
-                        <a href='#'>Забыли пароль?</a>
+                    <div class="form-input-material-2 block-input">
+                        <div class="check">
+                            <input type="checkbox" name="forgot" id="forgot">
+                            <label for="gorgot">Запомнить меня</label>
+                        </div>
+                        <div class="forgot">
+                            <a href='#'>Забыли пароль?</a>
+                        </div>
                     </div>
-                    <div class="form-input-material">
-                        <button type="submit" class="btn btn-primary btn-ghost">Login</button>
+                    <div class="form-input-material block-input">
+                        <button type="submit" class="btn btn-primary btn-ghost">ВОЙТИ</button>
                     </div>
                   </form>
             </div>
         </div>
     </main>
-    {% comment %} <h1>Страница авторизации пользователя</h1>
-    <input type="text">
-    <br>
-    <input type="text">
-    <br>
-    <input type="button" value="Вход"> {% endcomment %}
 </body>
 </html>

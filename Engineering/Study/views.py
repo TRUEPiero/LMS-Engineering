@@ -12,9 +12,9 @@ def index(request):
     options = {
         'title': 'LMS Engineering',
         'exercise': exercise,
-        'user':'АКБАШЕВ ВЛАДИСЛАВ'
+        'user':'Акбашев Владислав'
     }
-    
+
     return render(request,'Study/index.html', options)
 
 
@@ -23,7 +23,7 @@ def show_exercise(request, Ex_id):
     options = {
         'title': 'Задание ' + str(Ex_id),
         'Ex_id':Ex_id,
-        'user':'АКБАШЕВ ВЛАДИСЛАВ'
+        'user':'Акбашев Владислав'
     }
 
     return render(request, 'Study/exercise.html', options)
