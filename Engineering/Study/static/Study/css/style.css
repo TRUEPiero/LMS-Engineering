@@ -133,6 +133,26 @@ main {
     max-width: 987.48px;
     margin: auto;
 }
+
+.login-main {
+    width: 50%;
+    max-width: 987.48px;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+}
+.block-image {
+    display: flex;
+}
+
+.inf-line {
+    margin: 10px 0;
+}
+
+.data-inf {
+    margin: 2px 0;
+}
+
 /* ------------------------------------------------- */
 footer {
     background-image: url("../images/main-background.svg");

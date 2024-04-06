@@ -1,9 +1,40 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
     <main>
-        <div class="under-main">
-
+        <div class="login-main">
+            <div class="block-image">
+                <img src={% static "Profile\images\photo.svg" %} alt="profile">
+                <button>ИЗМЕНИТЬ ФОТО</button>
+                <button>УДАЛИТЬ ФОТО</button>
+            </div>
+            <div class="block-inf">
+                <div class="inf-line">
+                    <p class="title-inf">ФИО</p>
+                    <p class="data-inf">{{user_data.full_name}}</p>
+                </div>
+                <div class="inf-line">
+                    <p class="title-inf">Статус</p>
+                    <p class="data-inf">{{user_data.status}}</p>
+                </div>
+                <div class="inf-line">
+                    <p class="title-inf">Курс</p>
+                    <p class="data-inf">{{user_data.course}}</p>
+                </div>
+                <div class="inf-line">
+                    <p class="title-inf">Группа</p>
+                    <p class="data-inf">{{user_data.group}}</p>
+                </div>
+                <div class="inf-line">
+                    <p class="title-inf">Эл. почта</p>
+                    <p class="data-inf">{{user_data.email}}</p>
+                </div>
+                <div class="inf-line">
+                    <p class="title-inf">Телефон</p>
+                    <p class="data-inf">{{user_data.phone}}</p>
+                </div>
+            </div>
         </div>
     </main>
 {% endblock %}
