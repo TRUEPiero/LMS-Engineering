@@ -121,7 +121,7 @@ main {
     background-color: rgb(255, 255, 255);
     border-radius: 50px;
     padding: 50px 0;
-    min-height: calc(100vh - 41.55px);
+    min-height: calc(100vh - 345px);
 }
 
 .main-title {
@@ -135,14 +135,49 @@ main {
 }
 
 .login-main {
+    padding-top: 30px;
     width: 50%;
     max-width: 987.48px;
     margin: auto;
     display: flex;
     justify-content: space-around;
 }
+
 .block-image {
+    display: inline-grid;
+    margin: 10px 0;
+}
+.block-image img {
+    margin: auto;
+    width: 80%;
+}
+
+.btns {
+    padding: 10px;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.block-image button {
+    margin: 5px 0;
+    height: 38px;
+    width: 200px;
+    border-radius: 5px;
+    /* vertical-align: middle; */
+}
+
+.change-photo {
+    border: none;
+    background-color:#26477F ;
+    color: white;
+}
+
+.delete-photo {
+    border: 1px solid #26477F;
+    color:#26477F;
+    background-color: white;
 }
 
 .inf-line {
