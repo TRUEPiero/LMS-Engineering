@@ -23,6 +23,11 @@ body {
     font-size: 28px;
 }
 
+.fw-300 {
+    font-weight: 300;
+    font-size: 20px;
+}
+
 .fw-200 {
     letter-spacing: -1px;
     font-size: 18px;
@@ -116,16 +121,100 @@ span {
     height: 100%;
 }
 
+
+.above-links a:hover {
+    border-bottom: 1px solid;
+}
+
+.above-links a {
+    text-decoration: none;
+    font-weight: 300;
+    color: #000000;
+    margin: 4px 10px;
+}
+
+.nav .above-links {
+    width:80%;
+    margin: 0 auto;
+    height: 0;
+    background-color: #ffffff;
+    transition: color 0.5s, padding 0.5s;
+    overflow: hidden;
+    font-size: 18px;
+    border-radius:0 0 5px 5px;
+
+    display: flex;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.nav label {
+    width: 200px;
+    cursor: pointer;
+    background: rgb(255, 255, 255);
+    display: block;
+    padding: 15px 20px;
+    color: #000000;
+    font-weight: 300;
+    font-size: 18px;
+    transition: color .35s;
+    border-radius:0 0 5px 5px;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+}
+
+.nav input{
+    display: none;
+}
+
+.nav label:before {
+    content: '\276F';
+    float: right;
+}
+
+.nav input:checked + label {
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+}
+
+.nav input:checked + label:before {
+    transition: transform .35s;
+    transform: rotate(90deg);
+}
+.nav input:checked + label + .above-links {
+    height: auto;
+    color: #000;
+    padding: 10px;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+}
+.above-links li {
+    font-size: 22px;
+}
+
 /* ------------------------------------------------- */
 main {
     background-color: rgb(255, 255, 255);
     border-radius: 50px;
     padding: 50px 0;
     min-height: calc(100vh - 345px);
+    color: #424242;
+}
+
+main a:hover {
+    border-bottom: 1px solid;
 }
 
 .main-title {
-    margin: 0 0 20px 0;
+    margin: 0 0 20px 15px;
+}
+
+.title_of_ex {
+    font-size: 20px;
+    margin: 30px 0 10px 15px;
 }
 
 .under-main {
@@ -187,6 +276,92 @@ main {
 .data-inf {
     margin: 2px 0;
 }
+
+
+.module {
+    margin: 0 0 10px 0;
+}
+
+.above-exercise a {
+    text-decoration: none;
+    font-weight: 300;
+    color: #000000;
+    margin: 4px 10px;
+}
+
+.module .above-exercise {
+    width:95%;
+    margin: auto;
+    height: 0;
+    background-color: #ffffff;
+    transition: color 0.5s, padding 0.5s;
+    overflow: hidden;
+    font-size: 18px;
+    border-radius:0 0 5px 5px;
+    display: flex;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+.block_of_ex_link {
+    width: 100%;
+    margin: 15px 0;
+}
+
+.block_of_ex_link a {
+    margin: 0 0 0 50px;
+    font-size: 18px;
+}
+a.create_ex {
+    font-weight: 400;
+    color: #26477F;
+}
+
+.above-exercise hr{
+    width: 97%;
+    margin: auto;
+}
+
+.module label {
+    cursor: pointer;
+    background: rgb(255, 255, 255);
+    display: block;
+    padding: 20px;
+    color: #000000;
+    font-weight: 300;
+    font-size: 18px;
+    transition: color .35s;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+.module input{
+    display: none;
+}
+
+.module label:before {
+    content: '\276F';
+    float: right;
+}
+
+.module input:checked + label {
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+}
+
+.module input:checked + label:before {
+    transition: transform .35s;
+    transform: rotate(90deg);
+}
+.module input:checked + label + .above-exercise {
+    height: auto;
+    color: #000;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+}
+
+
 
 /* ------------------------------------------------- */
 footer {

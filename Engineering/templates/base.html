@@ -24,16 +24,13 @@
                     </div>
                 </a>
             </div>
-            <div class="block-above-2">
-                <nav>
-                    <label for="touch"><span>{{user|upper}}</span></label>
-                    <input type="checkbox" id="touch">
-                    <ul class="slide">
-                        <li><a href={% url "profile" %}>Профиль</a></li>
-                        <hr class='center'>
-                        <li><a href={% url "login" %}>Выйти</a></li>
-                    </ul>
-                </nav>
+            <div class="nav">
+                <input type="checkbox" name="chacor" id="chacor1" />
+                <label for="chacor1">{{user}}  </label>
+                <div class="above-links">
+                    <a href={% url "profile" %}>Профиль</a>
+                    <a href={% url "login" %}>Выход</a>
+                </div>
             </div>
         </header>
         {% block content %}
