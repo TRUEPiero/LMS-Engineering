@@ -5,4 +5,5 @@ register =template.Library()
 
 @register.simple_tag()
 def getcategories():
-    return views.exercise
+    pass
+    # return views.exercise
