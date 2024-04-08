@@ -4,7 +4,26 @@
     <main>
         <div class="under-main">
             {% csrf_token %}
-            {{ form.as_p }}
+            {{form.as_p}}
+            {% comment %} <form action={% url "new_exercise_post" %} method='post'>
+                {% csrf_token %}
+                <input type="text", name='title'>
+                <input type="text", name='discription'>
+                <input type="date", name='deadline'>
+                <select name="selected_type">
+                    {% for type in all_types %}
+                        <option value={{type.pk}}>{{type}}</option>
+                    {% endfor %}
+                </select>
+                <select name="selected_module">
+                    <option value={{module.pk}}>{{module}}</option>
+                    {% for module_loop in all_modules %}
+                        <option value={{module_loop.pk}}>{{module_loop}}</option>
+                    {% endfor %}
+                </select>
+                <input type="file" value='Название', name='file'>
+                <input type="submit" value="Создать">
+            </form> {% endcomment %}
         </div>
     </main>
 {% endblock %}

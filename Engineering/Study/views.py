@@ -48,7 +48,11 @@ def show_exercise(request, ex_slug):
 
 def new_exercise(request, module_slug):
 
-    form = forms.AddNewExercise()
+    module = get_object_or_404(models.Modules_of_education_materials,slug=module_slug)
+    all_modules = models.Modules_of_education_materials.objects.exclude(slug=module_slug)
+    all_types = models.Type_of_education_materials.objects.all()
+
+    form = forms.AddNewExercise
 
     options = {
         'title': 'Новое задание',
