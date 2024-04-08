@@ -1,9 +1,9 @@
-from django import template
-import Study.views as views
+# from django import template
+# import Study.views as views
 
-register =template.Library()
+# register =template.Library()
 
-@register.simple_tag()
-def getcategories():
-    pass
-    # return views.exercise
+# @register.simple_tag()
+# def getcategories():
+#     pass
+#     # return views.exercise

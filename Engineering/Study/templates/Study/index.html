@@ -4,65 +4,28 @@
     <main>
         <div class="under-main">
             <p class='fw-400 main-title'>ОБУЧЕНИЕ</p>
-            {% for i in all_modules %}
-                {% if i.is_first %}
-                    <div class="module module_first">
-                        <p class='fw-400 title_of_ex'>ВСТУПИТЕЛЬНЫЙ РАЗДЕЛ</p>
-                        <input type="checkbox" name="chacor" id={{i.slug}} />
-                        <label for={{i.slug}}>{{i.title|upper}}</label>
-                        <div class="above-exercise">
-                            {% for ex in all_exercise %}
-                                {% if ex.module_id == i.pk %}
+            {% for key, value in sections.items %}
+
+                <p class='fw-400 title_of_ex'>{{key.title|upper}}</p>
+                {% for module in value %}
+                    {% for mod_key, mod_value in module.items %}
+                        <div class="module module_first">
+                            <input type="checkbox" name="chacor" id={{mod_key.slug}} />
+                            <label for={{mod_key.slug}}>{{mod_key.title|upper}}</label>
+                            <div class="above-exercise">
+                                {% for ex in mod_value %}
                                     <div class="block_of_ex_link">
                                         <a href='{{ ex.get_absolute_url }}'  class='exercise_link'>{{ex.title}}</a>
                                     </div>
-                                    {% comment %} <hr> {% endcomment %}
-                                {% endif %}
-                            {% endfor %}
-                            {% comment %} <div class="block_of_ex_link">
-                                <a href={% url "new_exercise" i.slug %} class='exercise_link create_ex'>Добавить</a>
-                            </div> {% endcomment %}
-                        </div>
-                    </div>
-                {% elif not i.is_first and not i.is_last %}
-                    <div class="module modules_main">
-                        <p class='fw-400 title_of_ex'>ОСНОВНОЙ РАЗДЕЛ</p>
-                        <input type="checkbox" name="chacor" id={{i.slug}} />
-                        <label for={{i.slug}}>{{i.title|upper}}</label>
-                        <div class="above-exercise">
-                            {% for ex in all_exercise %}
-                                {% if ex.module_id == i.pk %}
-                                    <div class="block_of_ex_link">
-                                        <a href='{{ ex.get_absolute_url }}' class='exercise_link'>{{ex.title}}</a>
-                                    </div>
                                     <hr>
-                                {% endif %}
-                            {% endfor %}
-                            <div class="block_of_ex_link">
-                                <a href={% url "new_exercise" i.slug %} class='exercise_link create_ex'>Добавить</a>
+                                {% endfor %}
+                                <div class="block_of_ex_link">
+                                    <a href={% url "new_exercise" mod_key.slug %} class='exercise_link create_ex'>Добавить</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                {% elif i.is_last %}
-                    <div class="module module_last">
-                        <p class='fw-400 title_of_ex'>ФИНАЛЬНЫЙ РАЗДЕЛ</p>
-                        <input type="checkbox" name="chacor" id={{i.slug}} />
-                        <label for={{i.slug}}>{{i.title|upper}}</label>
-                        <div class="above-exercise">
-                            {% for ex in all_exercise %}
-                                {% if ex.module_id == i.pk %}
-                                    <div class="block_of_ex_link">
-                                        <a href='{{ ex.get_absolute_url }}' class='exercise_link'>{{ex.title}}</a>
-                                    </div>
-                                    {% comment %} <hr> {% endcomment %}
-                                {% endif %}
-                            {% endfor %}
-                            <div class="block_of_ex_link">
-                                <a href={% url "new_exercise" i.slug %} class='exercise_link create_ex'>Добавить</a>
-                            </div>
-                        </div>
-                    </div>
-                {% endif %}
+                    {% endfor %}
+                {% endfor %}
             {% endfor %}
         </div>
     </main>

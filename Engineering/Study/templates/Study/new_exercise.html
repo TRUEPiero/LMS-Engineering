@@ -3,8 +3,11 @@
 {% block content %}
     <main>
         <div class="under-main">
-            {% csrf_token %}
-            {{ form.as_p }}
+            <form method='post'>
+                {% csrf_token %}
+                {{ form.as_p }}
+                <p><button type="submit">создать</button></p>
+            </form>
         </div>
     </main>
 {% endblock content %}

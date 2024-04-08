@@ -26,10 +26,10 @@
             </div>
             <div class="nav">
                 <input type="checkbox" name="chacor" id="chacor1" />
-                <label for="chacor1">{{user}}  </label>
+                <label for="chacor1">{{user.last_name|add:" "|add:user.first_name}}  </label>
                 <div class="above-links">
                     <a href={% url "profile" %}>Профиль</a>
-                    <a href={% url "login" %}>Выход</a>
+                    <a href={% url "logout" %}>Выход</a>
                 </div>
             </div>
         </header>

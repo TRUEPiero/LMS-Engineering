@@ -43,10 +43,15 @@ main {
     align-items: center;
     background-color: rgb(226, 226, 226);
 }
-
+ul.errorlist.nonfield {
+    color: red;
+    font-size: 12px;
+}
 .main-block {
     width: 60%;
     height: 60%;
+    max-width: 920px;
+    max-height: 450px;
     position: absolute;
     background-image: url(../image/Group\ 75.png);
     background-size: cover;
@@ -97,6 +102,8 @@ form{
     display: flex;
 }
 
+
+
 .form-input-material {
     justify-content: center;
 }
@@ -146,4 +153,22 @@ form input[type='checkbox'] {
 form a {
     text-decoration: none;
     color: #FF6500;
+}
+
+.above_form label{
+    display: none;
+}
+
+.above_form div {
+    justify-content: center;
+    width: 100%;
+    margin: 15px 0;
+    display: flex;
+}
+
+.above_form{
+    justify-content: center;
+    width: 100%;
+    /* margin: 10px 0; */
+    /* display: flex; */
 }
