@@ -1,7 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseNotFound
 from . import models
+<<<<<<< HEAD
 from . import forms
+=======
+>>>>>>> 8894846d1b4d7ce2a22ffa613850fa44dd76b4ca
 
 
 # Create your views here.
@@ -52,12 +55,21 @@ def new_exercise(request, module_slug):
     all_modules = models.Modules_of_education_materials.objects.exclude(slug=module_slug)
     all_types = models.Type_of_education_materials.objects.all()
 
+<<<<<<< HEAD
     form = forms.AddNewExercise
+=======
+>>>>>>> 8894846d1b4d7ce2a22ffa613850fa44dd76b4ca
 
     options = {
         'title': 'Новое задание',
         'user': 'Акбашев Владислав',
+<<<<<<< HEAD
         'form': form
+=======
+        'module': module,
+        'all_modules': all_modules,
+        'all_types': all_types,
+>>>>>>> 8894846d1b4d7ce2a22ffa613850fa44dd76b4ca
     }
 
     return render(request, 'Study/new_exercise.html', options)
@@ -75,8 +87,12 @@ def new_exercise_post(request):
     selected_type = get_object_or_404(models.Type_of_education_materials, pk=type_id)
     selected_module = get_object_or_404(models.Modules_of_education_materials, pk=module_id)
 
+<<<<<<< HEAD
     new_exercise = models.Education_materials(title=title, discription=discription, type=selected_type, module=selected_module, deadline=deadline, file=file)
     new_exercise.save()
+=======
+    new_exercise = models.Education_materials.objects.create(title=title, discription=discription, type=selected_type, module=selected_module, deadline=deadline, file=file)
+>>>>>>> 8894846d1b4d7ce2a22ffa613850fa44dd76b4ca
 
     all_modules = models.Modules_of_education_materials.objects.all()
     all_exercise = models.Education_materials.objects.all()
@@ -88,8 +104,12 @@ def new_exercise_post(request):
         'user':'Акбашев Владислав'
     }
 
+<<<<<<< HEAD
     return redirect("home", permanent=True)
 
+=======
+    return render(request, 'Study/index.html', options)
+>>>>>>> 8894846d1b4d7ce2a22ffa613850fa44dd76b4ca
 
 
 def page_not_found(request, exception):
