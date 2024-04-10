@@ -139,4 +139,4 @@ LOGOUT_REDIRECT_URL = 'login'
 LOGIN_URL = 'login'
 
 
-# AUTH_USER_MODEL = 'Login.User'
+AUTH_USER_MODEL = 'Login.User'
