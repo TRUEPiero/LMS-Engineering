@@ -30,6 +30,7 @@ class MainPage(LoginRequiredMixin,TemplateView):
         context['sections'] = self.dict_sections
         context['title'] = 'LMS Engineeging'
         return context
+    # pass
 
 class ShowExercise(LoginRequiredMixin,DetailView):
     model = models.Education_materials
