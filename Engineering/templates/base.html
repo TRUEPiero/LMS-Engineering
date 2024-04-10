@@ -1,0 +1,43 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href={% static "Study\css\style.css" %}>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <title>{{ title }}</title>
+</head>
+<body>
+    <div class="above_all">
+        <header>
+            <div class="block-above-1">
+                <a href={% url "home" %} class="main_link">
+                    <img src={% static "Study\images\logo.svg" %} alt="logo">
+                    <div class="above_links">
+                        <p class='fw-800'>LMS</p>
+                        <p class='fw-800'>Engineering</p>
+                        <p class='fw-200'>Электронный образовательный ресурс</p>
+                    </div>
+                </a>
+            </div>
+            <div class="nav">
+                <input type="checkbox" name="chacor" id="chacor1" />
+                <label for="chacor1">{{user.last_name|add:" "|add:user.first_name}}  </label>
+                <div class="above-links">
+                    <a href={% url "profile" %}>Профиль</a>
+                    <a href={% url "logout" %}>Выход</a>
+                </div>
+            </div>
+        </header>
+        {% block content %}
+        {% endblock %}
+        <footer>
+            <p>2023 Copyright Text</p>
+        </footer>
+    </div>
+</body>
+</html>

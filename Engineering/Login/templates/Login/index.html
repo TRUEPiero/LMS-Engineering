@@ -1,0 +1,49 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href={% static "Login\css\style.css" %}>
+    <title>Авторизация</title>
+</head>
+<body>
+    <main>
+        <div class="main-block">
+            <div class="block-above-1">
+                <img src={% static "Study\images\logo.svg" %} alt="logo">
+                <div class="above_links">
+                    <p class='fw-400'>LMS</p>
+                    <p class='fw-400'>Engineering</p>
+                    <p class='fw-100'>Электронный образовательный ресурс</p>
+                </div>
+            </div>
+            <div class="block-form">
+                <form class="login-form" action='' method='post'>
+                    <div class="form-input-material block-input">
+                        <p class='fw-300'>АВТОРИЗАЦИЯ</p>
+                    </div>
+
+                    {% csrf_token %}
+                    <div class="above_form">
+                        {{ form.as_div }}
+                    </div>
+                    <div class="form-input-material-2 block-input">
+                        <div class="check">
+                            <input type="checkbox" name="forgot" id="forgot">
+                            <label for="gorgot">Запомнить меня</label>
+                        </div>
+                        <div class="forgot">
+                            <a href='#'>Забыли пароль?</a>
+                        </div>
+                    </div>
+                    <div class="form-input-material block-input">
+                        <button type="submit" class="btn btn-primary btn-ghost">ВОЙТИ</button>
+                    </div>
+                  </form>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

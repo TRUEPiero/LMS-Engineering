@@ -1,0 +1,380 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings: "slnt" 0;
+}
+
+body {
+    /* max-width: 1920px; */
+    margin: auto;
+}
+
+.fw-800 {
+    letter-spacing: 2px;
+    font-weight: 800;
+    font-size: 34px;
+}
+
+.fw-400 {
+    font-weight: 400;
+    font-size: 28px;
+}
+
+.fw-300 {
+    font-weight: 300;
+    font-size: 20px;
+}
+
+.fw-200 {
+    letter-spacing: -1px;
+    font-size: 18px;
+    font-weight: 200;
+}
+
+.center {
+    width: 90%;
+    margin: auto;
+}
+
+.above_all {
+    background-image: url("../images/main-background.svg");
+}
+
+header {
+    color: white;
+    padding: 0 50px 50px 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.block-above-1 {
+    padding-top: 50px;
+}
+
+header a.main_link {
+    outline: none;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+header a.main_link:link, header a.main_link:visited{
+    color: #ffffff;
+}
+
+/* header a:focus, header a:hover, header a:active {
+    color:#FF6500;
+} */
+
+.above_links {
+    padding: 0 0 0 14px;
+}
+
+li a {
+    text-decoration : none;
+    color : #424242;
+}
+
+nav {
+    background: #ffffff;
+    border-radius: 0 0 5px 5px;
+}
+
+span {
+    padding : 10px 20px;
+    background : #ffffff;
+    color : #424242;
+    cursor : pointer;
+    display: block;
+    font-weight: 600;
+    font-size: 18px;
+    border-top: 10px none #424242;
+    border-right: 1px solid #424242;
+    border-bottom: 1px solid #424242;
+    border-left: 1px solid #424242;
+    border-radius: 0 0 5px 5px;
+}
+
+.slide {
+    width:90%;
+    height:0px;
+    overflow: hidden;
+    text-align: center;
+    transition: height .1s ease;
+    margin: auto;
+}
+
+.slide li {
+    padding : 10px;
+}
+
+#touch {
+    position: absolute;
+    opacity: 0;
+    height: 0px;
+}
+
+#touch:checked + .slide {
+    height: 100%;
+}
+
+
+.above-links a:hover {
+    border-bottom: 1px solid;
+}
+
+.above-links a {
+    text-decoration: none;
+    font-weight: 300;
+    color: #000000;
+    margin: 4px 10px;
+}
+
+.nav .above-links {
+    width:80%;
+    margin: 0 auto;
+    height: 0;
+    background-color: #ffffff;
+    transition: color 0.5s, padding 0.5s;
+    overflow: hidden;
+    font-size: 18px;
+    border-radius:0 0 5px 5px;
+
+    display: flex;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.nav label {
+    width: 200px;
+    cursor: pointer;
+    background: rgb(255, 255, 255);
+    display: block;
+    padding: 15px 20px;
+    color: #000000;
+    font-weight: 300;
+    font-size: 18px;
+    transition: color .35s;
+    border-radius:0 0 5px 5px;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+}
+
+.nav input{
+    display: none;
+}
+
+.nav label:before {
+    content: '\276F';
+    float: right;
+}
+
+.nav input:checked + label {
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+}
+
+.nav input:checked + label:before {
+    transition: transform .35s;
+    transform: rotate(90deg);
+}
+.nav input:checked + label + .above-links {
+    height: auto;
+    color: #000;
+    padding: 10px;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+}
+.above-links li {
+    font-size: 22px;
+}
+
+/* ------------------------------------------------- */
+main {
+    background-color: rgb(255, 255, 255);
+    border-radius: 50px;
+    padding: 50px 0;
+    min-height: calc(100vh - 345px);
+    color: #424242;
+}
+
+main a:hover {
+    border-bottom: 1px solid;
+}
+
+.main-title {
+    margin: 0 0 20px 15px;
+}
+
+.title_of_ex {
+    font-size: 20px;
+    margin: 30px 0 10px 15px;
+}
+
+.under-main {
+    width: 65%;
+    max-width: 987.48px;
+    margin: auto;
+}
+
+.login-main {
+    padding-top: 30px;
+    width: 50%;
+    max-width: 987.48px;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+}
+
+.block-image {
+    display: inline-grid;
+    margin: 10px 0;
+}
+.block-image img {
+    margin: auto;
+    width: 80%;
+}
+
+.btns {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.block-image button {
+    margin: 5px 0;
+    height: 38px;
+    width: 200px;
+    border-radius: 5px;
+    /* vertical-align: middle; */
+}
+
+.change-photo {
+    border: none;
+    background-color:#26477F ;
+    color: white;
+}
+
+.delete-photo {
+    border: 1px solid #26477F;
+    color:#26477F;
+    background-color: white;
+}
+
+.inf-line {
+    margin: 10px 0;
+}
+
+.data-inf {
+    margin: 2px 0;
+}
+
+
+.module {
+    margin: 0 0 10px 0;
+}
+
+.above-exercise a {
+    text-decoration: none;
+    font-weight: 300;
+    color: #000000;
+    margin: 4px 10px;
+}
+
+.module .above-exercise {
+    width:95%;
+    margin: auto;
+    height: 0;
+    background-color: #ffffff;
+    transition: color 0.5s, padding 0.5s;
+    overflow: hidden;
+    font-size: 18px;
+    border-radius:0 0 5px 5px;
+    display: flex;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+.block_of_ex_link {
+    width: 100%;
+    margin: 15px 0;
+}
+
+.block_of_ex_link a {
+    margin: 0 0 0 50px;
+    font-size: 18px;
+}
+a.create_ex {
+    font-weight: 400;
+    color: #26477F;
+}
+
+.above-exercise hr{
+    width: 97%;
+    margin: auto;
+}
+
+.module label {
+    cursor: pointer;
+    background: rgb(255, 255, 255);
+    display: block;
+    padding: 20px;
+    color: #000000;
+    font-weight: 300;
+    font-size: 18px;
+    transition: color .35s;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+.module input{
+    display: none;
+}
+
+.module label:before {
+    content: '\276F';
+    float: right;
+}
+
+.module input:checked + label {
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+}
+
+.module input:checked + label:before {
+    transition: transform .35s;
+    transform: rotate(90deg);
+}
+.module input:checked + label + .above-exercise {
+    height: auto;
+    color: #000;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+}
+
+
+
+/* ------------------------------------------------- */
+footer {
+    background-image: url("../images/main-background.svg");
+	background-size: cover;
+    color: white;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+
+}
+
+footer p {
+    font-size: 18px;
+    font-weight: 200;
+}
