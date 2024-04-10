@@ -21,8 +21,15 @@
                                 <div class="block_of_ex_link">
                                     <a href={% url "new_exercise" mod_key.slug %} class='exercise_link create_ex'>Добавить</a>
                                 </div>
+                                    <hr>
+                                {% endfor %}
+                                <div class="block_of_ex_link">
+                                    <a href={% url "new_exercise" mod_key.slug %} class='exercise_link create_ex'>Добавить</a>
+                                </div>
                             </div>
                         </div>
+                    {% endfor %}
+                {% endfor %}
                     {% endfor %}
                 {% endfor %}
             {% endfor %}
