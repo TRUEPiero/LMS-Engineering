@@ -1,10 +1,4 @@
-{% extends "base.html" %}
-
-{% block content %}
-    <main>
-        <div class="under-main">
-            <p class='fw-400 main-title'>ОБУЧЕНИЕ</p>
-            {% for key, value in sections.items %}
+{% for key, value in sections.items %}
                 <p class='fw-400 title_of_ex'>{{key.title|upper}}</p>
                 {% for module in value %}
                     {% for mod_key, mod_value in module.items %}
@@ -26,6 +20,3 @@
                     {% endfor %}
                 {% endfor %}
             {% endfor %}
-        </div>
-    </main>
-{% endblock %}

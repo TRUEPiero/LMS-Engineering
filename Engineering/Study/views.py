@@ -9,7 +9,7 @@ from django.views.generic import TemplateView, DetailView, FormView, CreateView
 from django.urls import reverse_lazy
 
 # Create your views here.
-class MainPage(LoginRequiredMixin,TemplateView):
+def index(request):
     all_sections = models.Sections_of_modules.objects.all()
 
     dict_sections = {}
@@ -22,15 +22,34 @@ class MainPage(LoginRequiredMixin,TemplateView):
             dict_module[fmodule] = models.Education_materials.objects.filter(module=fmodule)
             dict_sections[section].append(dict_module)
 
-    template_name='Study/index.html'
+    options = {
+        'sections': dict_sections
+    }
+
+    return render(request, 'Study/index.html', options)
+
+# class MainPage(LoginRequiredMixin,TemplateView):
+#     all_sections = models.Sections_of_modules.objects.all()
+
+#     dict_sections = {}
+
+#     for section in all_sections:
+#         dict_sections[section] = []
+#         modules = models.Modules_of_education_materials.objects.filter(section=section)
+#         for fmodule in modules:
+#             dict_module = {}
+#             dict_module[fmodule] = models.Education_materials.objects.filter(module=fmodule)
+#             dict_sections[section].append(dict_module)
+
+#     template_name='Study/index.html'
 
 
-    def get_context_data(self, **kwargs: Any):
-        context = super().get_context_data(**kwargs)
-        context['sections'] = self.dict_sections
-        context['title'] = 'LMS Engineeging'
-        return context
-    # pass
+#     def get_context_data(self, **kwargs: Any):
+#         context = super().get_context_data(**kwargs)
+#         context['sections'] = self.dict_sections
+#         context['title'] = 'LMS Engineeging'
+#         return context
+#     # pass
 
 class ShowExercise(LoginRequiredMixin,DetailView):
     model = models.Education_materials
