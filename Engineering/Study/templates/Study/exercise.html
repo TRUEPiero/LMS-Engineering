@@ -3,13 +3,14 @@
 {% block content %}
     <main>
         <div class="under-main">
-            <p class='fw-400 main-title'>{{exercise_data.id}}</p>
-            <p class='fw-400 main-title'>{{exercise_data.date_created}}</p>
-            <p class='fw-400 main-title'>{{exercise_data.title}}</p>
-            <p class='fw-400 main-title'>{{exercise_data.discription}}</p>
-            <p class='fw-400 main-title'>{{exercise_data.deadline}}</p>
-            <p class='fw-400 main-title'>{{exercise_data.type}}</p>
-            <p class='fw-400 main-title'>{{exercise_data.module}}</p>
+            <p class='fw-400 main-title'>{{object.id}}</p>
+            <p class='fw-400 main-title'>{{object.date_created}}</p>
+            <p class='fw-400 main-title'>{{object.title}}</p>
+            <p class='fw-400 main-title'>{{object.discription}}</p>
+            <p class='fw-400 main-title'>{{object.deadline}}</p>
+            <p class='fw-400 main-title'>{{object.type}}</p>
+            <p class='fw-400 main-title'>{{object.module}}</p>
+            <a href={{object.file.url}} class='fw-400 main-title' target='_blank'>{{object.file}}</a>
         </div>
     </main>
 {% endblock %}

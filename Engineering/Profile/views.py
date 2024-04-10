@@ -1,20 +1,15 @@
+from typing import Any
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
+from django.views.generic import TemplateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-user_data = {
-    'full_name': 'Акбашев Владислав Игоревич',
-    'status': 'Студент',
-    'course': '4',
-    'group': '015',
-    'email': 'example@gmail.com',
-    'phone': '+7 (987) 098-98-87',
-}
 
-def showProfile(request):
+class ShowProfile(LoginRequiredMixin, TemplateView):
+    template_name = 'Profile\\index.html'
 
-    options = {
-        'title':'Профиль',
-        'user': 'Акбашев Владислав',
-        'user_data':user_data
-    }
 
-    return render(request, 'Profile\\index.html', options)
+    def get_context_data(self, **kwargs: Any):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Профиль'
+        return context

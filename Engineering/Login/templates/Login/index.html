@@ -24,11 +24,10 @@
                     <div class="form-input-material block-input">
                         <p class='fw-300'>АВТОРИЗАЦИЯ</p>
                     </div>
-                    <div class="form-input-material block-input">
-                        <input type="text" name="username" id="username" placeholder="ЛОГИН" autocomplete="off" class="form-control-material" required />
-                    </div>
-                    <div class="form-input-material block-input">
-                        <input type="password" name="password" id="password" placeholder="ПАРОЛЬ" autocomplete="off" class="form-control-material" required />
+
+                    {% csrf_token %}
+                    <div class="above_form">
+                        {{ form.as_div }}
                     </div>
                     <div class="form-input-material-2 block-input">
                         <div class="check">
