@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseNotFound
 from . import models, forms
 from django.views import View
-from django.views.generic import TemplateView, DetailView, FormView, CreateView
+from django.views.generic import TemplateView, DetailView, FormView, CreateView, DeleteView, UpdateView
 from django.urls import reverse_lazy
 
 # Create your views here.
@@ -23,7 +23,8 @@ def index(request):
             dict_sections[section].append(dict_module)
 
     options = {
-        'sections': dict_sections
+        'sections': dict_sections,
+        'title':'LMS Engineering'
     }
 
     return render(request, 'Study/index.html', options)
@@ -85,6 +86,27 @@ class NewExercise(LoginRequiredMixin,CreateView):
         ex = form.save(commit=False)
         ex.author = self.request.user
         return super().form_valid(form)
+
+
+class DeleteExercise(DeleteView):
+    model = models.Education_materials
+    slug_url_kwarg = 'ex_slug'
+    success_url = reverse_lazy('home')
+
+
+class UpdateExercise(UpdateView):
+    model = models.Education_materials
+    form_class = forms.AddNewExercise
+    slug_url_kwarg = 'ex_slug'
+    # fields = ['title', 'module','type', 'discription','deadline', 'files']
+    template_name = 'Study/new_exercise.html'
+    success_url = reverse_lazy('home')
+    initial = {}
+
+    def get_form_kwargs(self):
+        context = super().get_form_kwargs()
+        # context['current_module'] = self.object.module)
+        return context
 
 
 

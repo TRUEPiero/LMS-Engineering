@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block content %}
     <main>
         <div class="under-main">
@@ -15,6 +15,13 @@
                                 {% for ex in mod_value %}
                                     <div class="block_of_ex_link">
                                         <a href='{{ ex.get_absolute_url }}'  class='exercise_link'>{{ex.title}}</a>
+                                        <div class="dropdown">
+                                            <div class="more-block"><img src={% static "Study\images\more.svg" %} alt="more" clas></div>
+                                            <div class="dropdown-content">
+                                                <a href="">Удалить</a>
+                                                <a href="">Изменить</a>
+                                            </div>
+                                          </div>
                                     </div>
                                     <hr>
                                 {% endfor %}

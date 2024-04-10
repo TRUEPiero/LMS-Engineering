@@ -1,5 +1,5 @@
 from django import forms
-from .models import Modules_of_education_materials, Type_of_education_materials,Education_materials
+from .models import Modules_of_education_materials, Education_materials
 
 
 
@@ -10,11 +10,12 @@ class AddNewExercise(forms.ModelForm):
         self.fields['module'].initial=self.current_module
 
     module = forms.ModelChoiceField(queryset=Modules_of_education_materials.objects.all())
-    deadline = forms.DateField(input_formats=['%d-%m-%Y'], widget=forms.DateInput, required=False)
+    deadline = forms.DateField(widget=forms.SelectDateWidget, required=False)
+    # file = forms.FileField(widget=forms.ClearableFileInput())
 
     class Meta:
         model = Education_materials
-        fields = ['title', 'discription', 'module', 'type', 'deadline', 'file']
+        fields = ['title', 'discription', 'module', 'type', 'deadline', 'files']
         widgets = {
             'discription': forms.Textarea(attrs={'class':'text-area_input'})
         }

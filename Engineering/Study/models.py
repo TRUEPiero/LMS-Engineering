@@ -4,6 +4,18 @@ from django.db import models
 import datetime
 
 # Create your models here.
+class FilesForEx(models.Model):
+    title = models.CharField(blank=True, null=True, max_length=255)
+    file = models.FileField(upload_to='files/%Y/%m/%d/',blank=True)
+
+    def __str__(self) -> str:
+        return str(self.file)
+
+    def save(self):
+        self.title = str(self.file)[17:]
+        super(FilesForEx, self).save()
+
+
 class Sections_of_modules(models.Model):
     title = models.CharField(max_length=255)
 
@@ -42,7 +54,7 @@ class Education_materials(models.Model):
     title = models.CharField(max_length=255)
     discription = models.TextField(blank=True)
     deadline = models.DateField(blank=True, null=True)
-    file = models.FileField(upload_to='files/%Y/%m/%d/',blank=True)
+    files = models.ManyToManyField('FilesForEx', blank=True)
     author = models.ForeignKey(get_user_model(),on_delete=models.SET_NULL,null=True)
 
     def __str__(self):

@@ -1,16 +1,54 @@
 {% extends "base.html" %}
-
+{% load static %}
+{% load studytags %}
 {% block content %}
     <main>
         <div class="under-main">
-            <p class='fw-400 main-title'>{{object.id}}</p>
-            <p class='fw-400 main-title'>{{object.date_created}}</p>
-            <p class='fw-400 main-title'>{{object.title}}</p>
-            <p class='fw-400 main-title'>{{object.discription}}</p>
-            <p class='fw-400 main-title'>{{object.deadline}}</p>
-            <p class='fw-400 main-title'>{{object.type}}</p>
-            <p class='fw-400 main-title'>{{object.module}}</p>
-            <a href={{object.file.url}} class='fw-400 main-title' target='_blank'>{{object.file}}</a>
+            <div class="exercise_header">
+                <div class="exercise-inf">
+                    <p class='fw-400'>{{object.title}}</p>
+                    <div class="exercise-inf-u">
+                        <p class='fw-400 author'>{{object.author}}</p>
+                        <p class='fw-400'>{{object.date_created}}</p>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <div class="more-block"><img src={% static "Study\images\more.svg" %} alt="more" clas></div>
+                    <div class="dropdown-content">
+                        {% comment %} <a href={% url "delete" object.slug %}>Удалить</a> {% endcomment %}
+                        <form action={% url "delete_ex" object.slug %} method='POST'>
+                            {% csrf_token %}
+                            <button type="submit">Удалить</button>
+                        </form>
+                        <form action={% url "update_ex" object.slug %} method='POST'>
+                            {% csrf_token %}
+                            <button type="submit">Изменить</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="exercise-disc">
+                <p class='fw-400'>{{object.discription}}</p>
+            </div>
+            <div class="files-block">
+                {% with object.files.all as files %}
+                    {% if files %}
+                        {% for i in files %}
+                            <div class="file-block">
+                                <a href={{i.file.url}} target="_blank">
+                                    <div class="image-file">
+                                        <img src={% static "Study/images/file.svg" %} alt="">
+                                    </div>
+                                    <div class="title-file">
+                                        <p>{{i.title|slice:22|add:"..."}}</p>
+                                        <p>{{i.title|file}}</p>
+                                    </div>
+                                </a>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
         </div>
     </main>
 {% endblock %}

@@ -1,9 +1,10 @@
-# from django import template
-# import Study.views as views
+from django import template
+import Study.views as views
+import os
 
-# register =template.Library()
+register =template.Library()
 
-# @register.simple_tag()
-# def getcategories():
-#     pass
-#     # return views.exercise
+@register.filter(name='file')
+def getextension(value):
+    split_tup = os.path.splitext(value)
+    return split_tup[1][1:]
