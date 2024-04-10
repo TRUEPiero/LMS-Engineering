@@ -42,15 +42,8 @@ class Education_materials(models.Model):
     title = models.CharField(max_length=255)
     discription = models.TextField(blank=True)
     deadline = models.DateField(blank=True, null=True)
-<<<<<<< HEAD
     file = models.FileField(upload_to='files/%Y/%m/%d/',blank=True)
     author = models.ForeignKey(get_user_model(),on_delete=models.SET_NULL,null=True)
-
-=======
-    file = models.FileField(blank=True)
-    author = models.ForeignKey(get_user_model(),on_delete=models.SET_NULL,null=True)
-    
->>>>>>> 44e660529b4590f0b06832a3b831da69bfb5f116
     def __str__(self):
         return self.title
 
