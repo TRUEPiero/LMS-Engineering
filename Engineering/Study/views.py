@@ -9,7 +9,7 @@ from django.views.generic import TemplateView, DetailView, FormView, CreateView
 from django.urls import reverse_lazy
 
 # Create your views here.
-class MainPage(TemplateView):
+class MainPage(LoginRequiredMixin,TemplateView):
     all_sections = models.Sections_of_modules.objects.all()
 
     dict_sections = {}
@@ -31,7 +31,7 @@ class MainPage(TemplateView):
         context['title'] = 'LMS Engineeging'
         return context
 
-class ShowExercise(DetailView):
+class ShowExercise(LoginRequiredMixin,DetailView):
     model = models.Education_materials
     template_name = 'Study/exercise.html'
     slug_url_kwarg = 'ex_slug'
@@ -43,7 +43,7 @@ class ShowExercise(DetailView):
         return context
 
 
-class NewExercise(CreateView):
+class NewExercise(LoginRequiredMixin,CreateView):
     form_class = forms.AddNewExercise
     template_name = 'Study/new_exercise.html'
     success_url = reverse_lazy('home')
