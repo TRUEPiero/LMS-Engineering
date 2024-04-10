@@ -3,4 +3,4 @@ from django.http import HttpResponse
 
 # Create your views here.
 def index(request): #HTTPRequest
-    return HttpResponse("Страница учебных материалов")
+    return HttpResponse("Главная страница. Тут будет список учебных материалов.")
