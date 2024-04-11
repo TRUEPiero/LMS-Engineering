@@ -15,19 +15,30 @@
                                 {% for ex in mod_value %}
                                     <div class="block_of_ex_link">
                                         <a href='{{ ex.get_absolute_url }}'  class='exercise_link'>{{ex.title}}</a>
-                                        <div class="dropdown">
-                                            <div class="more-block"><img src={% static "Study\images\more.svg" %} alt="more" clas></div>
-                                            <div class="dropdown-content">
-                                                <a href="">Удалить</a>
-                                                <a href="">Изменить</a>
+                                        {% if perms.Study.add_education_materials %}
+                                            <div class="dropdown">
+                                                <div class="more-block"><img src={% static "Study\images\more.svg" %} alt="more" clas></div>
+                                                <div class="dropdown-content">
+                                                    <form action={% url "delete_ex" ex.slug %} method='POST'>
+                                                        {% csrf_token %}
+                                                        <button type="submit">Удалить</button>
+                                                    </form>
+                                                    <form action={% url "update_ex" ex.slug %} method='GET'>
+                                                        <button type="submit">Изменить</button>
+                                                    </form>
+                                                </div>
                                             </div>
-                                          </div>
+                                        {% endif %}
                                     </div>
+                                    {% if perms.Study.add_education_materials %}
                                     <hr>
+                                    {% endif %}
                                 {% endfor %}
-                                <div class="block_of_ex_link">
-                                    <a href={% url "new_exercise" mod_key.slug %} class='exercise_link create_ex'>Добавить</a>
-                                </div>
+                                {% if perms.Study.add_education_materials %}
+                                    <div class="block_of_ex_link">
+                                        <a href={% url "new_exercise" mod_key.slug %} class='exercise_link create_ex'>Добавить</a>
+                                    </div>
+                                {% endif %}
                             </div>
                         </div>
                     {% endfor %}

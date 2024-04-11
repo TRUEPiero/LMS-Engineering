@@ -15,7 +15,7 @@ body {
 .fw-800 {
     letter-spacing: 2px;
     font-weight: 800;
-    font-size: 34px;
+    font-size: 30px;
 }
 
 .fw-400 {
@@ -30,7 +30,7 @@ body {
 
 .fw-200 {
     letter-spacing: -1px;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 200;
 }
 
@@ -52,6 +52,9 @@ header {
 
 .block-above-1 {
     padding-top: 50px;
+}
+.block-above-1 img{
+    width: 130px;
 }
 
 header a.main_link {
@@ -200,7 +203,7 @@ main {
     background-color: rgb(255, 255, 255);
     border-radius: 50px;
     padding: 50px 0;
-    min-height: calc(100vh - 345px);
+    min-height: calc(100vh - 340px);
     color: #424242;
 }
 main a {
@@ -495,6 +498,48 @@ a.create_ex {
     color: #26477F;
 }
 
+.completed-exercises {
+    margin: 40px 0 0 0;
+    width: 618px;
+}
+
+.completed-exercises p {
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.try-count {
+    margin: 25px 0 0 0;
+    color: #FF6500;
+    font-size: 16px;
+}
+
+.comp-line {
+    margin-top: 10px;
+    display: flex;
+    /* justify-content: space-between; */
+}
+
+.comp-line label {
+    width: 120px;
+}
+
+.file-line {
+    margin-left: 120px;
+}
+
+.send-completed {
+    margin-top: 40px;
+}
+
+.block-mes {
+    width: 450px;
+}
+
+.send-completed textarea {
+    margin-top: 10px;
+    width: 987.48px;
+}
 /* ------------------------------------------------- */
 footer {
     background-image: url("../images/main-background.svg");
@@ -507,6 +552,6 @@ footer {
 }
 
 footer p {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 200;
 }

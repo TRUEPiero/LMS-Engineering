@@ -12,20 +12,23 @@
                         <p class='fw-400'>{{object.date_created}}</p>
                     </div>
                 </div>
-                <div class="dropdown">
-                    <div class="more-block"><img src={% static "Study\images\more.svg" %} alt="more" clas></div>
-                    <div class="dropdown-content">
-                        {% comment %} <a href={% url "delete" object.slug %}>Удалить</a> {% endcomment %}
-                        <form action={% url "delete_ex" object.slug %} method='POST'>
-                            {% csrf_token %}
-                            <button type="submit">Удалить</button>
-                        </form>
-                        <form action={% url "update_ex" object.slug %} method='POST'>
-                            {% csrf_token %}
-                            <button type="submit">Изменить</button>
-                        </form>
+                {% if perms.Study.add_education_materials %}
+                    <div class="dropdown">
+                        <div class="more-block"><img src={% static "Study\images\more.svg" %} alt="more" clas></div>
+                        <div class="dropdown-content">
+                            {% comment %} <a href={% url "delete" object.slug %}>Удалить</a> {% endcomment %}
+
+                                <form action={% url "delete_ex" object.slug %} method='POST'>
+                                    {% csrf_token %}
+                                    <button type="submit">Удалить</button>
+                                </form>
+                                <form action={% url "update_ex" object.slug %} method='GET'>
+                                    <button type="submit">Изменить</button>
+                                </form>
+
+                        </div>
                     </div>
-                </div>
+                {% endif %}
             </div>
             <div class="exercise-disc">
                 <p class='fw-400'>{{object.discription}}</p>
@@ -48,6 +51,37 @@
                         {% endfor %}
                     {% endif %}
                 {% endwith %}
+            </div>
+            <div class="completed-exercises">
+                {% for i in completed_ex %}
+                    <div class="one-completed">
+                        <p class='try-count'>Попытка #{{ forloop.counter }}</p>
+                        <div class="comp-line">
+                            <label for="value-line">Ответ:</label>
+                            <div class="block-mes">
+                                <p class='value-line'>{{i.message}}</p>
+                            </div>
+                        </div>
+                        {% if i.file %}
+                            <div class="comp-line">
+                                <a class='file-line' href={{i.file.url}}>{{i.title}}</a>
+                            </div>
+                        {% endif %}
+                        <div class="comp-line">
+                            <label for="value-line">Дата ответа:</label>
+                            <p class='value-line'>{{i.date_created}}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="send-completed">
+                <p class='try-count'>Новая попытка</p>
+                <form action={% url "new_completed" object.slug%} method='POST' enctype='multipart/form-data'>
+                    {% csrf_token %}
+                    <p><textarea type="text" name="message" id="message" cols='180' rows='14'></textarea></p>
+                    <p><input type="file" name="file" id="file"></p>
+                    <p><button type="submit">Отправить</button></p>
+                </form>
             </div>
         </div>
     </main>
