@@ -60,6 +60,7 @@ class ShowExercise(LoginRequiredMixin,DetailView):
     slug_url_kwarg = 'ex_slug'
     context_object_name = 'object'
 
+
     def get_context_data(self, **kwargs: Any):
         context = super().get_context_data(**kwargs)
         context['title'] = context['object'].title
@@ -108,25 +109,35 @@ class UpdateExercise(LoginRequiredMixin,UpdateView):
         return queryset
 
 
-# class NewCompleted(CreateView):
-#     form_class = forms.NewCompletedEx
-#     slug_url_kwarg = 'ex_slug'
-#     template_name = 'Study/completed_ex.html'
-#     success_url = reverse_lazy('home')
-
+@login_required()
 def complete_exercise(request, ex_slug):
     if request.POST:
+
         exercise = get_object_or_404(models.Education_materials, slug=ex_slug)
 
-        new_completed_ex = models.CompletedEx(message=request.POST['message'], education_material=exercise, student=request.user,file=None)
+        new_completed_ex = models.CompletedEx(message=request.POST['message'], education_material=exercise, student=request.user)
         if request.FILES:
             new_completed_ex.file = request.FILES['file']
         new_completed_ex.save()
-        return redirect('home')
+
+        return redirect(reverse('exercise', args=[ex_slug]))
+
     else:
+
         return redirect('home')
 
+class CompletedExercises(LoginRequiredMixin, TemplateView):
+    template_name ='Study\\completed-exercises.html'
+    slug_url_kwarg = 'ex_slug'
 
+
+    def get_context_data(self, **kwargs: Any):
+        context = super().get_context_data(**kwargs)
+        object = get_object_or_404(models.Education_materials, slug=kwargs['ex_slug'])
+        context['title'] = object.title
+        context['object'] = object
+
+        return context
 
 def page_not_found(request, exception):
     return HttpResponseNotFound("Страница не найдена")

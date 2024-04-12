@@ -2,13 +2,23 @@
 {% load static %}
 {% load studytags %}
 {% block content %}
-    <main>
+    <main class='exercise-main'>
         <div class="under-main">
+            <div class="links-grades">
+                {% if perms.Study.add_Grades %}
+                    <div class='active'>
+                        <a href="#" >Информация</a>
+                    </div>
+                    <div class="active-2">
+                        <a href={% url "completed" object.slug %}>Работы учащихся</a>
+                    </div>
+                {% endif %}
+            </div>
             <div class="exercise_header">
                 <div class="exercise-inf">
                     <p class='fw-400'>{{object.title}}</p>
                     <div class="exercise-inf-u">
-                        <p class='fw-400 author'>{{object.author}}</p>
+                        <p class='fw-400 author'>{{object.author.first_name|add:" "|add:object.author.last_name}}</p>
                         <p class='fw-400'>{{object.date_created}}</p>
                     </div>
                 </div>
@@ -52,16 +62,19 @@
                     {% endif %}
                 {% endwith %}
             </div>
+            {% if completed_ex %}
             <div class="completed-exercises">
                 {% for i in completed_ex %}
                     <div class="one-completed">
                         <p class='try-count'>Попытка #{{ forloop.counter }}</p>
+                        {% if i.message %}
                         <div class="comp-line">
                             <label for="value-line">Ответ:</label>
                             <div class="block-mes">
                                 <p class='value-line'>{{i.message}}</p>
                             </div>
                         </div>
+                        {% endif %}
                         {% if i.file %}
                             <div class="comp-line">
                                 <a class='file-line' href={{i.file.url}}>{{i.title}}</a>
@@ -74,15 +87,18 @@
                     </div>
                 {% endfor %}
             </div>
-            <div class="send-completed">
-                <p class='try-count'>Новая попытка</p>
-                <form action={% url "new_completed" object.slug%} method='POST' enctype='multipart/form-data'>
-                    {% csrf_token %}
-                    <p><textarea type="text" name="message" id="message" cols='180' rows='14'></textarea></p>
-                    <p><input type="file" name="file" id="file"></p>
-                    <p><button type="submit">Отправить</button></p>
-                </form>
-            </div>
+            {% endif %}
+                <div class="send-completed">
+                    <p class='try-count'>Новая попытка</p>
+                    <form action={% url "new_completed" object.slug%} method='POST' enctype='multipart/form-data'>
+                        {% csrf_token %}
+                        <p><textarea type="text" name="message" id="message" cols='180' rows='8'></textarea></p>
+                        <div class="but-line">
+                            <p><input type="file" name="file" id="file" multiple ></p>
+                            <p><button type="submit">Отправить</button></p>
+                        </div>
+                    </form>
+                </div>
         </div>
     </main>
 {% endblock %}

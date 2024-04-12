@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+{% load studytags %}
+{% block content %}
+    <main class='exercise-main'>
+        <div class="under-main">
+            <div class="links-grades">
+                <div class='c-active-2'>
+                    <a href={% url "exercise" object.slug %} >Информация</a>
+                </div>
+                <div class="c-active">
+                    <a href='#'>Работы учащихся</a>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

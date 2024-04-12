@@ -33,7 +33,7 @@ class UpdateEx(forms.ModelForm):
 
 
 
-class NewCompletedEx(forms.ModelForm):
+class NewCompletedForm(forms.ModelForm):
     class Meta:
         model = CompletedEx
         fields = ['message', 'file']

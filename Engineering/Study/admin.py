@@ -7,6 +7,7 @@ admin.site.register(models.Modules_of_education_materials)
 admin.site.register(models.Sections_of_modules)
 admin.site.register(models.FilesForEx)
 admin.site.register(models.CompletedEx)
+admin.site.register(models.Grades)
 
 
 # Register your models here.

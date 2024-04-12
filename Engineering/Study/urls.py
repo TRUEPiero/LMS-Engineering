@@ -9,5 +9,6 @@ urlpatterns = [
     path('delete_exercise/<slug:ex_slug>', views.DeleteExercise.as_view(), name='delete_ex'),
     path('update_exercise/<slug:ex_slug>', views.UpdateExercise.as_view(), name='update_ex'),
     path('new_completed/<slug:ex_slug>', views.complete_exercise, name='new_completed'),
+    path('completed/<slug:ex_slug>', views.CompletedExercises.as_view(), name='completed'),
 
 ]

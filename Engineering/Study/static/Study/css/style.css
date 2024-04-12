@@ -93,7 +93,7 @@ span {
     cursor : pointer;
     display: block;
     font-weight: 600;
-    font-size: 18px;
+    font-size: 16px;
     border-top: 10px none #424242;
     border-right: 1px solid #424242;
     border-bottom: 1px solid #424242;
@@ -143,7 +143,7 @@ span {
     background-color: #ffffff;
     transition: color 0.5s, padding 0.5s;
     overflow: hidden;
-    font-size: 18px;
+    font-size: 16px;
     border-radius:0 0 5px 5px;
     display: flex;
     align-content: flex-start;
@@ -159,7 +159,7 @@ span {
     padding: 15px 20px;
     color: #000000;
     font-weight: 300;
-    font-size: 18px;
+    font-size: 16px;
     transition: color .35s;
     border-radius:0 0 5px 5px;
     border-bottom: 1px solid black;
@@ -206,18 +206,84 @@ main {
     min-height: calc(100vh - 340px);
     color: #424242;
 }
+
+.exercise-main {
+    padding-top: 0px;
+    min-height: calc(100vh - 280.5px);
+}
+
 main a {
     color: #000;
     text-decoration: none;
 }
 main a:hover {
     color: #26477F;
+    font-weight: 400;
 }
 
 .main-title {
     margin: 0 0 20px 15px;
 }
 
+.links-grades {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    color: #26477F;
+}
+
+main a {
+    color: #26477F;
+}
+
+.links-grades div {
+    height: 40px;
+    /* width: 120px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin: 0 10px; */
+}
+.active-2 {
+    width: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.active {
+
+    border-bottom: 2px #FF6500 solid;
+    width: 120px;
+}
+
+.active a {
+    color: #FF6500;
+}
+
+.active a:hover {
+    color: #FF6500;
+}
+
+.c-active-2 {
+    width: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.c-active {
+
+    border-bottom: 2px #FF6500 solid;
+    width: 160px;
+}
+
+.c-active a {
+    color: #FF6500;
+}
+.c-active a:hover {
+    color: #FF6500;
+}
 .title_of_ex {
     font-size: 20px;
     margin: 30px 0 10px 15px;
@@ -282,7 +348,6 @@ main a:hover {
 .data-inf {
     margin: 2px 0;
 }
-
 
 .module {
     margin: 0 0 10px 0;
@@ -432,6 +497,7 @@ a.create_ex {
 
 .exercise_header {
     display: flex;
+    margin: 20px 0 0 0;
     justify-content: space-between;
 }
 .exercise_header .dropdown-content {
@@ -441,7 +507,7 @@ a.create_ex {
     margin: 0px 0px 0px 0px;
 }
 .exercise-inf-u{
-    padding-top: 10px;
+    padding-top: 5px;
     display: flex;
     justify-content: space-between;
 }
@@ -467,7 +533,7 @@ a.create_ex {
     max-width: 300px;
     width: 300px;
     border-radius: 7px;
-    margin: 40px 15px 0 0;
+    margin: 30px 15px 0 0;
 }
 
 .file-block a {
@@ -491,7 +557,7 @@ a.create_ex {
 }
 .title-file p {
     margin: 5px;
-    color: #424242;
+    color: #26477F;
     font-size: 16px;
 }
 .file-block a:hover .title-file p {
@@ -499,7 +565,7 @@ a.create_ex {
 }
 
 .completed-exercises {
-    margin: 40px 0 0 0;
+    margin: 30px 0 0 0;
     width: 618px;
 }
 
@@ -529,7 +595,7 @@ a.create_ex {
 }
 
 .send-completed {
-    margin-top: 40px;
+    margin-top: 30px;
 }
 
 .block-mes {
@@ -539,7 +605,29 @@ a.create_ex {
 .send-completed textarea {
     margin-top: 10px;
     width: 987.48px;
+    resize: none;
+    padding: 2px;
 }
+.but-line {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.but-line input::file-selector-button, .but-line button {
+    border: none;
+    background-color: #26477F;
+    color: #ffffff;
+    border-radius: 5px;
+    width: 150px;
+    height: 30px;
+}
+
+.but-line input::file-selector-button {
+    cursor: pointer;
+}
+
+
 /* ------------------------------------------------- */
 footer {
     background-image: url("../images/main-background.svg");
