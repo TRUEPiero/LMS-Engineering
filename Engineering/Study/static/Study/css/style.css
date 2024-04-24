@@ -203,7 +203,7 @@ main {
     background-color: rgb(255, 255, 255);
     border-radius: 50px;
     padding: 50px 0;
-    min-height: calc(100vh - 340px);
+    min-height: calc(100vh - 330px);
     color: #424242;
 }
 
@@ -293,6 +293,10 @@ main a {
     width: 65%;
     max-width: 987.48px;
     margin: auto;
+}
+
+.u-n {
+    width: 50%;
 }
 
 .login-main {
@@ -499,6 +503,8 @@ a.create_ex {
     display: flex;
     margin: 20px 0 0 0;
     justify-content: space-between;
+    /* padding-bottom: 10px; */
+    border-bottom: #26477F 1px solid;
 }
 .exercise_header .dropdown-content {
     margin: 0px;
@@ -507,7 +513,7 @@ a.create_ex {
     margin: 0px 0px 0px 0px;
 }
 .exercise-inf-u{
-    padding-top: 5px;
+    padding: 12px 0;
     display: flex;
     justify-content: space-between;
 }
@@ -563,7 +569,10 @@ a.create_ex {
 .file-block a:hover .title-file p {
     color: #26477F;
 }
-
+.border-line {
+    height: 30px;
+    border-bottom: 1px solid #26477F;
+}
 .completed-exercises {
     margin: 30px 0 0 0;
     width: 618px;
@@ -626,7 +635,98 @@ a.create_ex {
 .but-line input::file-selector-button {
     cursor: pointer;
 }
+.block-input {
+    width: 100%;
+    margin: 5px 0;
+    display: flex;
+}
+.update-create-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
 
+.form-input-material-2 {
+    justify-content: space-between;
+}
+
+.form-input-material-2 select {
+    border: 1px solid #9E9E9E;
+    width: 49%;
+    color: black;
+    border-radius: 3px;
+    height: 40px;
+    padding: 0 0 0 10px;
+    box-sizing: border-box;
+}
+
+.update-create-form label {
+    display: none;
+}
+.update-create-form p {
+    width: 100%;
+}
+.update-create-form input {
+    border: 1px solid #9E9E9E;
+    width: 100%;
+    color: black;
+    border-radius: 3px;
+    height: 40px;
+    padding: 0 0 0 10px;
+    box-sizing: border-box;
+}
+
+.update-create-form textarea {
+    resize: none;
+    border: 1px solid #9E9E9E;
+    width: 100%;
+    color: black;
+    border-radius: 3px;
+    height: 100px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.form-input-material-1 select{
+    resize: none;
+    border: 1px solid #9E9E9E;
+    width: 100%;
+    color: black;
+    border-radius: 3px;
+    height: 100px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+#id_deadline_month {
+    margin: 0 10px;
+}
+
+.form-input-material-3 select{
+    resize: none;
+    border: 1px solid #9E9E9E;
+    /* width: 100%; */
+    color: black;
+    border-radius: 3px;
+    height: 40px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.update-create-form button {
+    width: 200px;
+    border: none;
+    background-color: #26477F;
+    color: white;
+    border-radius: 3px;
+    height: 40px;
+}
+.update-create-form *{
+    font-size: 16px;
+    font-weight: 300;
+}
+/* border */
 
 /* ------------------------------------------------- */
 footer {

@@ -2,10 +2,20 @@
 
 {% block content %}
     <main>
-        <div class="under-main">
-            <form method='post' enctype='multipart/form-data'>
+        <div class="under-main u-n">
+            <p class='fw-400'>Новое задание</p>
+            <form method='post' enctype='multipart/form-data' class='update-create-form'>
                 {% csrf_token %}
-                {{ form.as_p }}
+                <div class="form-input-material-2 block-input">{{form.title}}</div>
+                <div class="form-input-material-2 block-input">{{form.discription}}</div>
+                <div class="form-input-material-2 block-input ">
+                    {{form.module}}{{form.type}}</div>
+                <div class="block-input form-input-material-3">
+                        {{form.deadline}}
+                </div>
+                <div class="form-input-material-1 block-input">
+                    {{form.files}}
+                </div>
                 <p><button type="submit">создать</button></p>
             </form>
         </div>

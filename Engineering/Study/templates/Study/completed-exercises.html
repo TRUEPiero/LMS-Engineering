@@ -12,6 +12,11 @@
                     <a href='#'>Работы учащихся</a>
                 </div>
             </div>
+            {{user.study_group}}
+            {% for i in exercises %}
+                {{i.file}}
+                {{i.student}}
+            {% endfor %}
         </div>
     </main>
 {% endblock %}

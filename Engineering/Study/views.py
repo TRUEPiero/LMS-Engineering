@@ -64,7 +64,7 @@ class ShowExercise(LoginRequiredMixin,DetailView):
     def get_context_data(self, **kwargs: Any):
         context = super().get_context_data(**kwargs)
         context['title'] = context['object'].title
-        context['completed_ex'] = models.CompletedEx.objects.filter(student=self.request.user)
+        context['completed_ex'] = models.CompletedEx.objects.filter(student=self.request.user, education_material=context['object'])
         return context
 
 
@@ -115,7 +115,9 @@ def complete_exercise(request, ex_slug):
 
         exercise = get_object_or_404(models.Education_materials, slug=ex_slug)
 
-        new_completed_ex = models.CompletedEx(message=request.POST['message'], education_material=exercise, student=request.user)
+        new_completed_ex = models.CompletedEx(message=request.POST['message'],
+                                            education_material=exercise, student=request.user,
+                                            teacher=exercise.author)
         if request.FILES:
             new_completed_ex.file = request.FILES['file']
         new_completed_ex.save()
@@ -136,6 +138,7 @@ class CompletedExercises(LoginRequiredMixin, TemplateView):
         object = get_object_or_404(models.Education_materials, slug=kwargs['ex_slug'])
         context['title'] = object.title
         context['object'] = object
+        context['exercises'] = models.CompletedEx.objects.filter(education_material=object, teacher=self.request.user)
 
         return context
 
