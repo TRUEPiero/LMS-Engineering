@@ -8,9 +8,9 @@ class AdminUser(UserAdmin):
         (None, {
             "fields": (
                 'username','first_name','last_name',
-                'email','password','is_superuser','is_staff','is_active',
+                'email','phone','password','is_superuser','is_staff','is_active',
                 'groups','user_permissions',
-                'photo','study_group',
+                'photo','study_group','curse',
                 'date_joined','last_login',
 
             ),

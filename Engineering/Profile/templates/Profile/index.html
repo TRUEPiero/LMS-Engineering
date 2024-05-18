@@ -18,23 +18,52 @@
                 </div>
                 <div class="inf-line">
                     <p class="title-inf">Статус</p>
-                    <p class="data-inf">будет...</p>
+                    <p class="data-inf">
+                        {% if perms.Study.add_education_materials %}
+                            Преподаватель
+                        {% else %}
+                            Студент
+                        {% endif %}
+                    </p>
                 </div>
                 <div class="inf-line">
                     <p class="title-inf">Курс</p>
-                    <p class="data-inf">будет...</p>
+                    <p class="data-inf">
+                        {% if user.curse %}
+                            {{user.curse}}
+                        {% else %}
+                            ---
+                        {% endif %}</p>
                 </div>
                 <div class="inf-line">
                     <p class="title-inf">Группа</p>
-                    <p class="data-inf">будет...</p>
+                    <p class="data-inf">
+                        {% if user.study_group %}
+                            {{user.study_group}}
+                        {% else %}
+                            ---
+                        {% endif %}</p>
+
+                    </p>
                 </div>
                 <div class="inf-line">
                     <p class="title-inf">Эл. почта</p>
-                    <p class="data-inf">{{user.email}}</p>
+                    <p class="data-inf">
+                        {% if user.email %}
+                            {{user.email}}
+                        {% else %}
+                            ---
+                        {% endif %}</p>
                 </div>
                 <div class="inf-line">
                     <p class="title-inf">Телефон</p>
-                    <p class="data-inf">будет...</p>
+                    <p class="data-inf">
+                        {% if user.phone %}
+                            {{user.phone}}
+                        {% else %}
+                            ---
+                        {% endif %}
+                    </p>
                 </div>
             </div>
         </div>

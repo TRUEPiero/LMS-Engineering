@@ -4,7 +4,87 @@
     <main>
         <div class="under-main">
             <p class='fw-400 main-title'>ОБУЧЕНИЕ</p>
-            {% for key, value in sections.items %}
+            {% for key, value in sections_first.items %}
+                <p class='fw-400 title_of_ex'>{{key.title|upper}}</p>
+                {% for module in value %}
+                    {% for mod_key, mod_value in module.items %}
+                        <div class="module module_first">
+                            <input type="checkbox" name="chacor" id={{mod_key.slug}} />
+                            <label for={{mod_key.slug}}>{{mod_key.title|upper}}</label>
+                            <div class="above-exercise">
+                                {% for ex in mod_value %}
+                                    <div class="block_of_ex_link">
+                                        <a href='{{ ex.get_absolute_url }}'  class='exercise_link'>{{ex.title}}</a>
+                                        {% if perms.Study.add_education_materials %}
+                                            <div class="dropdown">
+                                                <div class="more-block"><img src={% static "Study\images\more.svg" %} alt="more" clas></div>
+                                                <div class="dropdown-content">
+                                                    <form action={% url "delete_ex" ex.slug %} method='POST'>
+                                                        {% csrf_token %}
+                                                        <button type="submit">Удалить</button>
+                                                    </form>
+                                                    <form action={% url "update_ex" ex.slug %} method='GET'>
+                                                        <button type="submit">Изменить</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                    {% if perms.Study.add_education_materials %}
+                                    <hr>
+                                    {% endif %}
+                                {% endfor %}
+                                {% if perms.Study.add_education_materials %}
+                                    <div class="block_of_ex_link">
+                                        <a href={% url "new_exercise" mod_key.slug %} class='exercise_link create_ex'>Добавить</a>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            {% endfor %}
+            {% for key, value in sections_main.items %}
+                <p class='fw-400 title_of_ex'>{{key.title|upper}}</p>
+                {% for module in value %}
+                    {% for mod_key, mod_value in module.items %}
+                        <div class="module module_first">
+                            <input type="checkbox" name="chacor" id={{mod_key.slug}} />
+                            <label for={{mod_key.slug}}>{{mod_key.title|upper}}</label>
+                            <div class="above-exercise">
+                                {% for ex in mod_value %}
+                                    <div class="block_of_ex_link">
+                                        <a href='{{ ex.get_absolute_url }}'  class='exercise_link'>{{ex.title}}</a>
+                                        {% if perms.Study.add_education_materials %}
+                                            <div class="dropdown">
+                                                <div class="more-block"><img src={% static "Study\images\more.svg" %} alt="more" clas></div>
+                                                <div class="dropdown-content">
+                                                    <form action={% url "delete_ex" ex.slug %} method='POST'>
+                                                        {% csrf_token %}
+                                                        <button type="submit">Удалить</button>
+                                                    </form>
+                                                    <form action={% url "update_ex" ex.slug %} method='GET'>
+                                                        <button type="submit">Изменить</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                    {% if perms.Study.add_education_materials %}
+                                    <hr>
+                                    {% endif %}
+                                {% endfor %}
+                                {% if perms.Study.add_education_materials %}
+                                    <div class="block_of_ex_link">
+                                        <a href={% url "new_exercise" mod_key.slug %} class='exercise_link create_ex'>Добавить</a>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            {% endfor %}
+            {% for key, value in sections_last.items %}
                 <p class='fw-400 title_of_ex'>{{key.title|upper}}</p>
                 {% for module in value %}
                     {% for mod_key, mod_value in module.items %}

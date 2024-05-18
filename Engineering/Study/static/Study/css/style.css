@@ -347,10 +347,12 @@ main a {
 
 .inf-line {
     margin: 10px 0;
+
 }
 
 .data-inf {
     margin: 2px 0;
+    color: #26477F;
 }
 
 .module {
@@ -727,6 +729,37 @@ a.create_ex {
     font-weight: 300;
 }
 /* border */
+
+.above_completed {
+    margin-left: 10px;
+    width: 40%;
+}
+
+.completed_ex_group {
+    margin-top: 25px;
+}
+
+.exercise_link{
+    margin: 0 0 0 40px;
+    font-weight: 300;
+}
+.one_ex{
+    width: 30%;
+    border: 1px black solid;
+    border-radius: 5px;
+    margin: 0 10px 10px 10px;
+    padding: 10px;
+    font-weight: 300;
+    font-size: 16px;
+}
+
+.one_ex a {
+    margin: 0;
+}
+.one_ex p {
+    overflow-wrap: break-word;
+    margin-bottom: 5px;
+}
 
 /* ------------------------------------------------- */
 footer {

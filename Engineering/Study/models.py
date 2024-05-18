@@ -22,6 +22,8 @@ class FilesForEx(models.Model):
 
 class Sections_of_modules(models.Model):
     title = models.CharField(max_length=255)
+    is_first = models.BooleanField(default=False)
+    is_last = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title
@@ -43,8 +45,6 @@ class Type_of_education_materials(models.Model):
 class Modules_of_education_materials(models.Model):
     slug = models.SlugField(max_length=255,unique=True, db_index=True, null=True)
     title = models.CharField(max_length=255)
-    is_first = models.BooleanField(default=False)
-    is_last = models.BooleanField(default=False)
     section = models.ForeignKey(Sections_of_modules, on_delete=models.PROTECT, null=True)
 
 

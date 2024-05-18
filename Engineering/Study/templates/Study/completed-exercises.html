@@ -12,10 +12,29 @@
                     <a href='#'>Работы учащихся</a>
                 </div>
             </div>
-            {{user.study_group}}
-            {% for i in exercises %}
-                {{i.file}}
-                {{i.student}}
+            {% for group_key,group_value in groups.items %}
+                <div class="module module_first completed_ex_group">
+                    <input type="checkbox" name="chacor" id={{group_key}} />
+                    <label for={{group_key}}>{{group_key}}</label>
+                    <div class="above-exercise">
+                        {% for fuser in group_value %}
+                            {% for user_key,user_value in fuser.items %}
+                                <div class="block_of_ex_link">
+                                    <p  class='exercise_link'>{{user_key.last_name|add:" "|add:user_key.first_name}}</p>
+                                </div>
+                                {% for ex in user_value %}
+                                    <div class="one_ex">
+                                        <p>{{ex.message}}</p>
+                                        <a href={{ex.file.url}} target=_blank>{{ex.file}}</a>
+                                    </div>
+                                {% endfor %}
+                            {% endfor %}
+                            {% if not forloop.last %}
+                                <hr>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
             {% endfor %}
         </div>
     </main>

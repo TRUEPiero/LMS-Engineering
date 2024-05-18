@@ -1,4 +1,5 @@
 from typing import Any
+from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect, get_object_or_404
@@ -7,6 +8,7 @@ from . import models, forms
 from django.views import View
 from django.views.generic import TemplateView, DetailView, FormView, CreateView, DeleteView, UpdateView
 from django.urls import reverse_lazy, reverse
+from Login.models import StudentGroup
 
 # Create your views here.
 # @login_required()
@@ -29,6 +31,36 @@ from django.urls import reverse_lazy, reverse
 #     }
 
 #     return render(request, 'Study/index.html', options)
+def create_sectiondict(section):
+
+    dict_sections = {}
+
+    for section in section:
+        dict_sections[section] = []
+        modules = models.Modules_of_education_materials.objects.filter(section=section)
+        for fmodule in modules:
+            dict_module = {}
+            dict_module[fmodule] = models.Education_materials.objects.filter(module=fmodule).order_by("date_created")
+            dict_sections[section].append(dict_module)
+
+    return dict_sections
+
+
+def create_comletedEx_dict(groups):
+
+    dict_Exersices = {}
+
+    for group in groups:
+        dict_Exersices[group] = []
+        User = get_user_model()
+        users = User.objects.order_by('first_name').filter(study_group=group)
+        for fuser in users:
+            dict_comleted_ex = {}
+            dict_comleted_ex[fuser] = models.CompletedEx.objects.filter(student=fuser)
+            dict_Exersices[group].append(dict_comleted_ex)
+
+
+    return dict_Exersices
 
 class MainPage(LoginRequiredMixin,TemplateView):
 
@@ -37,19 +69,13 @@ class MainPage(LoginRequiredMixin,TemplateView):
     def get_context_data(self, **kwargs: Any):
         context = super().get_context_data(**kwargs)
 
-        all_sections = models.Sections_of_modules.objects.all()
+        main_sections = models.Sections_of_modules.objects.filter(is_first=False,is_last=False)
+        first_sections = models.Sections_of_modules.objects.filter(is_first=True,is_last=False)
+        last_sections = models.Sections_of_modules.objects.filter(is_first=False,is_last=True)
 
-        dict_sections = {}
-
-        for section in all_sections:
-            dict_sections[section] = []
-            modules = models.Modules_of_education_materials.objects.filter(section=section)
-            for fmodule in modules:
-                dict_module = {}
-                dict_module[fmodule] = models.Education_materials.objects.filter(module=fmodule)
-                dict_sections[section].append(dict_module)
-
-        context['sections'] = dict_sections
+        context['sections_first'] = create_sectiondict(first_sections)
+        context['sections_main'] = create_sectiondict(main_sections)
+        context['sections_last'] = create_sectiondict(last_sections)
         context['title'] = 'LMS Engineeging'
         return context
     # pass
@@ -136,9 +162,12 @@ class CompletedExercises(LoginRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs: Any):
         context = super().get_context_data(**kwargs)
         object = get_object_or_404(models.Education_materials, slug=kwargs['ex_slug'])
+
+        all_groups = StudentGroup.objects.all()
+
         context['title'] = object.title
         context['object'] = object
-        context['exercises'] = models.CompletedEx.objects.filter(education_material=object, teacher=self.request.user)
+        context['groups'] = create_comletedEx_dict(all_groups)
 
         return context
 
