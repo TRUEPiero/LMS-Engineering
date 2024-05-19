@@ -99,7 +99,7 @@ class CompletedEx(models.Model):
 
     def save(self):
         if 'files/' not in str(self.file):
-            self.title = str(self.file)
+            self.title = str(self.student)+"_"+str(self.message)[:4]
         super(CompletedEx, self).save()
 
     class Meta:
@@ -108,6 +108,8 @@ class CompletedEx(models.Model):
 
 
 class Grades(models.Model):
+    date_created = models.DateTimeField(auto_now_add=True, null=True)
+    message = models.TextField(max_length=255, null=True, blank=True)
     teacher = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='grade_teacher')
     student = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='grade_student')
     complete_exercise = models.ForeignKey('CompletedEx', on_delete=models.CASCADE)
@@ -115,3 +117,8 @@ class Grades(models.Model):
 
     class Meta:
         verbose_name = 'Оценки'
+
+
+    def change_grade(self, new_grade):
+        self.grade = new_grade
+        super(Grades, self).save()

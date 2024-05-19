@@ -67,7 +67,7 @@
             </div>
             {% if completed_ex %}
             <div class="completed-exercises">
-                {% for i in completed_ex %}
+                {% for i,grade in completed_ex.items %}
                     <div class="one-completed">
                         <p class='try-count'>Попытка #{{ forloop.counter }}</p>
                         {% if i.message %}
@@ -84,9 +84,19 @@
                             </div>
                         {% endif %}
                         <div class="comp-line">
-                            <label for="value-line">Дата ответа:</label>
+                            <label for="value-line">Дата сдачи задания:</label>
                             <p class='value-line'>{{i.date_created}}</p>
                         </div>
+                        {% if grade %}
+                            <div class="teacher_line">
+                                <label for="value-line">Преподаватель:</label>
+                                <p class='value-line'>{{grade.teacher.last_name|add:" "|add:grade.teacher.first_name}}</p>
+                            </div>
+                            <div class="grade_line">
+                                <label for="value-line">Оценка:</label>
+                                <p class='value-line'>{{grade.grade}}</p>
+                            </div>
+                        {% endif %}
                     </div>
                 {% endfor %}
             </div>

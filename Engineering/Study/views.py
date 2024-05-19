@@ -56,9 +56,18 @@ def create_comletedEx_dict(groups):
         users = User.objects.order_by('first_name').filter(study_group=group)
         for fuser in users:
             dict_comleted_ex = {}
-            dict_comleted_ex[fuser] = models.CompletedEx.objects.filter(student=fuser)
-            dict_Exersices[group].append(dict_comleted_ex)
+            dict_execisesgrades = {}
 
+            c_exercises = models.CompletedEx.objects.filter(student=fuser).order_by("-date_created")
+            for ex in c_exercises:
+                grade_obj = models.Grades.objects.filter(complete_exercise = ex)
+                if grade_obj:
+                    dict_execisesgrades[ex] = grade_obj[0]
+                else:
+                    dict_execisesgrades[ex] = ''
+
+            dict_comleted_ex[fuser] = dict_execisesgrades
+            dict_Exersices[group].append(dict_comleted_ex)
 
     return dict_Exersices
 
@@ -90,7 +99,17 @@ class ShowExercise(LoginRequiredMixin,DetailView):
     def get_context_data(self, **kwargs: Any):
         context = super().get_context_data(**kwargs)
         context['title'] = context['object'].title
-        context['completed_ex'] = models.CompletedEx.objects.filter(student=self.request.user, education_material=context['object'])
+
+        completed_ex_dict = {}
+        completed_ex = models.CompletedEx.objects.filter(student=self.request.user, education_material=context['object'])
+        for ex in completed_ex:
+            grade_obj = models.Grades.objects.filter(complete_exercise = ex)
+            if grade_obj:
+                completed_ex_dict[ex] = grade_obj[0]
+            else:
+                completed_ex_dict[ex] = ''
+
+        context['completed_ex'] = completed_ex_dict
         return context
 
 
@@ -136,6 +155,26 @@ class UpdateExercise(LoginRequiredMixin,UpdateView):
 
 
 @login_required()
+def new_grade(request, ex_slug):
+    if request.POST:
+        completed_exercise = get_object_or_404(models.CompletedEx, pk=request.POST['completed_ex_id'])
+
+        grade_obj = models.Grades.objects.filter(complete_exercise=completed_exercise)
+        if grade_obj:
+            grade_obj.update(grade=request.POST['grade'])
+        else:
+            new_grade_model = models.Grades.objects.create(complete_exercise=completed_exercise,
+                                                       teacher=completed_exercise.teacher,
+                                                       student=completed_exercise.student,
+                                                       grade=request.POST['grade'])
+
+        return redirect(reverse('completed', args=[ex_slug]))
+
+    else:
+        return redirect(reverse('completed', args=[ex_slug]))
+
+
+@login_required()
 def complete_exercise(request, ex_slug):
     if request.POST:
 
@@ -170,6 +209,7 @@ class CompletedExercises(LoginRequiredMixin, TemplateView):
         context['groups'] = create_comletedEx_dict(all_groups)
 
         return context
+
 
 def page_not_found(request, exception):
     return HttpResponseNotFound("Страница не найдена")

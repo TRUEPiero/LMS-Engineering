@@ -22,12 +22,31 @@
                                 <div class="block_of_ex_link">
                                     <p  class='exercise_link'>{{user_key.last_name|add:" "|add:user_key.first_name}}</p>
                                 </div>
-                                {% for ex in user_value %}
-                                    <div class="one_ex">
-                                        <p>{{ex.message}}</p>
-                                        <a href={{ex.file.url}} target=_blank>{{ex.file}}</a>
-                                    </div>
-                                {% endfor %}
+                                <div class="above_one_ex">
+                                    {% for ex,grade in user_value.items %}
+                                        <div class="one_ex">
+                                            <div class="above_date_ex">
+                                                <p>{{ex.date_created}}</p>
+                                                <p>{{ex.message}}</p>
+                                                {% if ex.file %}
+                                                    <a href={{ex.file.url}} target=_blank>{{ex.file.url|split:"/"|last}}</a>
+                                                {% endif %}
+                                            </div>
+                                            <form action={% url "new_grade" object.slug%} method='POST'>
+                                                {% csrf_token %}
+                                                <p class='nonedisplay'><input type="text" id="completed_ex_id" name="completed_ex_id" value={{ex.pk}} /></p>
+                                                {% if grade %}
+                                                    <p><input type="text" id="grade" name="grade" required minlength="1" maxlength="1" size="1" value={{grade.grade}} /></p>
+                                                {% else %}
+                                                    <p><input type="text" id="grade" name="grade" required minlength="1" maxlength="1" size="1" /></p>
+
+                                                {% endif %}
+                                                <p><button type="submit">Отправить</button></p>
+
+                                            </form>
+                                        </div>
+                                    {% endfor %}
+                                </div>
                             {% endfor %}
                             {% if not forloop.last %}
                                 <hr>
