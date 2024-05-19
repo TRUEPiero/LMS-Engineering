@@ -6,6 +6,7 @@
             <p class='fw-400'>Новое задание</p>
             <form method='post' enctype='multipart/form-data' class='update-create-form'>
                 {% csrf_token %}
+
                 <div class="form-input-material-2 block-input">{{form.title}}</div>
                 <div class="form-input-material-2 block-input">{{form.discription}}</div>
                 <div class="form-input-material-2 block-input ">

@@ -13,11 +13,11 @@
             </div>
             <div class="block-inf">
                 <div class="inf-line">
-                    <p class="title-inf">ФИО</p>
+                    <p class="title-inf">ФИО:</p>
                     <p class="data-inf">{{user.last_name|add:" "|add:user.first_name}}</p>
                 </div>
                 <div class="inf-line">
-                    <p class="title-inf">Статус</p>
+                    <p class="title-inf">Статус:</p>
                     <p class="data-inf">
                         {% if perms.Study.add_education_materials %}
                             Преподаватель
@@ -27,7 +27,7 @@
                     </p>
                 </div>
                 <div class="inf-line">
-                    <p class="title-inf">Курс</p>
+                    <p class="title-inf">Курс:</p>
                     <p class="data-inf">
                         {% if user.curse %}
                             {{user.curse}}
@@ -36,7 +36,7 @@
                         {% endif %}</p>
                 </div>
                 <div class="inf-line">
-                    <p class="title-inf">Группа</p>
+                    <p class="title-inf">Группа:</p>
                     <p class="data-inf">
                         {% if user.study_group %}
                             {{user.study_group}}
@@ -47,7 +47,7 @@
                     </p>
                 </div>
                 <div class="inf-line">
-                    <p class="title-inf">Эл. почта</p>
+                    <p class="title-inf">Эл. почта:</p>
                     <p class="data-inf">
                         {% if user.email %}
                             {{user.email}}
@@ -56,7 +56,7 @@
                         {% endif %}</p>
                 </div>
                 <div class="inf-line">
-                    <p class="title-inf">Телефон</p>
+                    <p class="title-inf">Телефон:</p>
                     <p class="data-inf">
                         {% if user.phone %}
                             {{user.phone}}

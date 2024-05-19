@@ -34,6 +34,18 @@ body {
     font-weight: 200;
 }
 
+.circle {
+    width: 70px;
+    height: 70px;
+    border-radius: 100%;
+    background-color: #26477F;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    display: none;
+    border: none;
+}
+
 .center {
     width: 90%;
     margin: auto;
@@ -56,7 +68,9 @@ header {
 .block-above-1 img{
     width: 130px;
 }
-
+.title-inf {
+    font-weight: 500;
+}
 header a.main_link {
     outline: none;
     text-decoration: none;
@@ -86,7 +100,7 @@ nav {
     border-radius: 0 0 5px 5px;
 }
 
-span {
+/* span {
     padding : 10px 20px;
     background : #ffffff;
     color : #424242;
@@ -99,7 +113,7 @@ span {
     border-bottom: 1px solid #424242;
     border-left: 1px solid #424242;
     border-radius: 0 0 5px 5px;
-}
+} */
 
 .slide {
     width:90%;
@@ -750,6 +764,7 @@ a.create_ex {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    padding: 0 30px 0 30px;
 }
 .one_ex{
     /* width: 28%; */
@@ -762,17 +777,29 @@ a.create_ex {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    min-width: 211px;
 }
 
 .one_ex a {
     margin: 0;
-    color: #26477F;
+    color: #FF6500;
     font-weight: 400;
 }
+.one_ex a:hover {
+    color: #FF6500;
+
+}
+
 .one_ex p {
     overflow-wrap: break-word;
     margin-bottom: 5px;
 }
+
+.one_ex span {
+    font-weight: 400;
+    color: #26477F;
+}
+
 .one_ex form {
     margin: 10px 0 0 0;
 }
@@ -790,6 +817,9 @@ a.create_ex {
     padding: 0 0 0 10px;
     box-sizing: border-box;
 }
+.c123 {
+    width: 100px;
+}
 
 .one_ex button {
     width: 100px;
@@ -804,13 +834,26 @@ a.create_ex {
     display: none;
 }
 
-.teacher_line, .grade_line {
+.above_teacher_ans {
+    margin-top: 20px;
+}
+
+.teacher_line, .grade_line, .datetime_line, .message_line {
     margin-top: 10px;
     display: flex;
 }
 
-.teacher_line label, .grade_line label{
+.teacher_line label, .grade_line label, .datetime_line label, .message_line label{
     width: 140px;
+}
+
+.message_123 {
+    display: block;
+    max-width: 190px;
+}
+
+.blue {
+
 }
 /* ------------------------------------------------- */
 footer {

@@ -11,6 +11,9 @@ class AddNewExercise(forms.ModelForm):
 
     module = forms.ModelChoiceField(queryset=Modules_of_education_materials.objects.all())
     deadline = forms.DateField(widget=forms.SelectDateWidget, required=False)
+    title = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Название'}))
+    discription = forms.CharField(widget=forms.Textarea(attrs={'placeholder': 'Описание'}))
+
 
     class Meta:
         model = Education_materials
@@ -23,6 +26,8 @@ class AddNewExercise(forms.ModelForm):
 class UpdateEx(forms.ModelForm):
 
     deadline = forms.DateField(widget=forms.SelectDateWidget, required=False)
+    title = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Название'}))
+    discription = forms.CharField(widget=forms.Textarea(attrs={'placeholder': 'Описание'}))
 
     class Meta:
         model = Education_materials

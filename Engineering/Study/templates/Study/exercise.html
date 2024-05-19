@@ -70,31 +70,45 @@
                 {% for i,grade in completed_ex.items %}
                     <div class="one-completed">
                         <p class='try-count'>Попытка #{{ forloop.counter }}</p>
+                        <div class="comp-line">
+                            <label for="value-line">Дата сдачи:</label>
+                            <p class='value-line'>{{i.date_created}}</p>
+                        </div>
                         {% if i.message %}
                         <div class="comp-line">
-                            <label for="value-line">Ответ:</label>
+                            <label for="value-line">Сообщение:</label>
                             <div class="block-mes">
                                 <p class='value-line'>{{i.message}}</p>
                             </div>
                         </div>
                         {% endif %}
+
                         {% if i.file %}
                             <div class="comp-line">
                                 <a class='file-line' href={{i.file.url}}>{{i.title}}</a>
                             </div>
                         {% endif %}
-                        <div class="comp-line">
-                            <label for="value-line">Дата сдачи задания:</label>
-                            <p class='value-line'>{{i.date_created}}</p>
-                        </div>
+
                         {% if grade %}
-                            <div class="teacher_line">
-                                <label for="value-line">Преподаватель:</label>
-                                <p class='value-line'>{{grade.teacher.last_name|add:" "|add:grade.teacher.first_name}}</p>
-                            </div>
-                            <div class="grade_line">
-                                <label for="value-line">Оценка:</label>
-                                <p class='value-line'>{{grade.grade}}</p>
+                            <div class="above_teacher_ans">
+                                <div class="datetime_line">
+                                    <label for="value-line">Дата ответа:</label>
+                                    <p class='value-line'>{{grade.date_created}}</p>
+                                </div>
+                                <div class="teacher_line">
+                                    <label for="value-line">Преподаватель:</label>
+                                    <p class='value-line'>{{grade.teacher.last_name|add:" "|add:grade.teacher.first_name}}</p>
+                                </div>
+                                {% if grade.message %}
+                                    <div class="message_line">
+                                        <label for="value-line">Сообщение:</label>
+                                        <p class='value-line'>{{grade.message}}</p>
+                                    </div>
+                                {% endif %}
+                                <div class="grade_line">
+                                    <label for="value-line">Оценка:</label>
+                                    <p class='value-line'>{{grade.grade}}</p>
+                                </div>
                             </div>
                         {% endif %}
                     </div>

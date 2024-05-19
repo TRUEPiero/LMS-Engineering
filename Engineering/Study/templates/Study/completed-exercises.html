@@ -20,7 +20,7 @@
                         {% for fuser in group_value %}
                             {% for user_key,user_value in fuser.items %}
                                 <div class="block_of_ex_link">
-                                    <p  class='exercise_link'>{{user_key.last_name|add:" "|add:user_key.first_name}}</p>
+                                    <p  class='exercise_link blue'>{{user_key.last_name|add:" "|add:user_key.first_name}}</p>
                                 </div>
                                 <div class="above_one_ex">
                                     {% for ex,grade in user_value.items %}
@@ -32,17 +32,20 @@
                                                     <a href={{ex.file.url}} target=_blank>{{ex.file.url|split:"/"|last}}</a>
                                                 {% endif %}
                                             </div>
-                                            <form action={% url "new_grade" object.slug%} method='POST'>
+                                            <form action={% url "new_grade" object.slug%} method='POST' id="myForm" >
                                                 {% csrf_token %}
                                                 <p class='nonedisplay'><input type="text" id="completed_ex_id" name="completed_ex_id" value={{ex.pk}} /></p>
                                                 {% if grade %}
-                                                    <p><input type="text" id="grade" name="grade" required minlength="1" maxlength="1" size="1" value={{grade.grade}} /></p>
+                                                    {% if grade.message %}
+                                                        <p class='message_123'><span>Сообщение: </span>{{grade.message}}</p>
+                                                    {% endif %}
+                                                    <p class='grade_123'><span>Оценка: </span>{{grade.grade}}</p>
                                                 {% else %}
-                                                    <p><input type="text" id="grade" name="grade" required minlength="1" maxlength="1" size="1" /></p>
+                                                    <p><input type="text" id="message" name="message" placeholder='Сообщение'/></p>
+                                                    <p><input type="text" id="grade" name="grade" required minlength="1" maxlength="1" size="1" placeholder='Оценка' class='c123'/></p>
+                                                    <p><button type="submit">Отправить</button></p>
 
                                                 {% endif %}
-                                                <p><button type="submit">Отправить</button></p>
-
                                             </form>
                                         </div>
                                     {% endfor %}
@@ -58,3 +61,9 @@
         </div>
     </main>
 {% endblock %}
+<script>
+    document.getElementById('myForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        // Ваш код для обработки формы здесь
+    });
+</script>

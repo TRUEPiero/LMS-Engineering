@@ -166,7 +166,7 @@ def new_grade(request, ex_slug):
             new_grade_model = models.Grades.objects.create(complete_exercise=completed_exercise,
                                                        teacher=completed_exercise.teacher,
                                                        student=completed_exercise.student,
-                                                       grade=request.POST['grade'])
+                                                       grade=request.POST['grade'], message=request.POST['message'])
 
         return redirect(reverse('completed', args=[ex_slug]))
 
