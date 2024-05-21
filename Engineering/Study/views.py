@@ -46,7 +46,7 @@ def create_sectiondict(section):
     return dict_sections
 
 
-def create_comletedEx_dict(groups):
+def create_comletedEx_dict(groups, education_material):
 
     dict_Exersices = {}
 
@@ -58,7 +58,7 @@ def create_comletedEx_dict(groups):
             dict_comleted_ex = {}
             dict_execisesgrades = {}
 
-            c_exercises = models.CompletedEx.objects.filter(student=fuser).order_by("-date_created")
+            c_exercises = models.CompletedEx.objects.filter(student=fuser, education_material=education_material).order_by("-date_created")
             for ex in c_exercises:
                 grade_obj = models.Grades.objects.filter(complete_exercise = ex)
                 if grade_obj:
@@ -78,6 +78,15 @@ class MainPage(LoginRequiredMixin,TemplateView):
     def get_context_data(self, **kwargs: Any):
         context = super().get_context_data(**kwargs)
 
+        # first_education_mat = get_object_or_404(models.Education_materials, start=True)
+        # last_education_mat = get_object_or_404(models.Education_materials, finish=True)
+
+        first_education_mat = models.Education_materials.objects.filter(start=True).first()
+        last_education_mat = models.Education_materials.objects.filter(finish=True).first()
+
+        first_comp_ex = models.CompletedEx.objects.filter(education_material=first_education_mat, student=self.request.user)
+        last_comp_ex = models.CompletedEx.objects.filter(education_material=last_education_mat, student=self.request.user)
+
         main_sections = models.Sections_of_modules.objects.filter(is_first=False,is_last=False)
         first_sections = models.Sections_of_modules.objects.filter(is_first=True,is_last=False)
         last_sections = models.Sections_of_modules.objects.filter(is_first=False,is_last=True)
@@ -85,6 +94,8 @@ class MainPage(LoginRequiredMixin,TemplateView):
         context['sections_first'] = create_sectiondict(first_sections)
         context['sections_main'] = create_sectiondict(main_sections)
         context['sections_last'] = create_sectiondict(last_sections)
+        context['first'] = first_comp_ex
+        context['last'] = last_comp_ex
         context['title'] = 'LMS Engineeging'
         return context
     # pass
@@ -177,14 +188,32 @@ def new_grade(request, ex_slug):
 @login_required()
 def complete_exercise(request, ex_slug):
     if request.POST:
+        # if len(request.POST) == 2:
+        #     return redirect(reverse('exercise', args=[ex_slug]))
 
         exercise = get_object_or_404(models.Education_materials, slug=ex_slug)
 
-        new_completed_ex = models.CompletedEx(message=request.POST['message'],
-                                            education_material=exercise, student=request.user,
-                                            teacher=exercise.author)
-        if request.FILES:
-            new_completed_ex.file = request.FILES['file']
+        if request.POST.get('message'):
+            new_completed_ex = models.CompletedEx(message=request.POST['message'],
+                                                education_material=exercise, student=request.user,
+                                                teacher=exercise.author)
+            if request.FILES:
+                new_completed_ex.file = request.FILES['file']
+
+        else:
+
+            count = 0
+            for key, value in request.POST.items():
+                if key != 'csrfmiddlewaretoken' and key != 'count_questions':
+                    choise = get_object_or_404(models.Choise, answer=value)
+                    if choise.is_correct:
+                        count += 1
+
+            count_str = f"{count}"
+
+            new_completed_ex = models.CompletedEx(education_material=exercise, student=request.user,
+                                                teacher=exercise.author, count_correct_test=count_str, count_quests=request.POST['count_questions'])
+
         new_completed_ex.save()
 
         return redirect(reverse('exercise', args=[ex_slug]))
@@ -206,7 +235,7 @@ class CompletedExercises(LoginRequiredMixin, TemplateView):
 
         context['title'] = object.title
         context['object'] = object
-        context['groups'] = create_comletedEx_dict(all_groups)
+        context['groups'] = create_comletedEx_dict(all_groups, object)
 
         return context
 

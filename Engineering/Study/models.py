@@ -69,6 +69,9 @@ class Education_materials(models.Model):
     deadline = models.DateField(blank=True, null=True, verbose_name='Дата сдачи')
     files = models.ManyToManyField('FilesForEx', blank=True, verbose_name='Файлы')
     author = models.ForeignKey(get_user_model(),on_delete=models.SET_NULL,null=True, verbose_name='Автор')
+    test = models.ForeignKey('StudyTest', on_delete=models.SET_NULL, null=True)
+    start = models.BooleanField(default=False)
+    finish = models.BooleanField(default=False)
 
 
     def __str__(self):
@@ -93,13 +96,15 @@ class CompletedEx(models.Model):
     file = models.FileField(upload_to='files/%Y/%m/%d/', blank=True, null=True)
     student = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='student', null=True)
     teacher = models.ForeignKey(get_user_model(), on_delete=models.CASCADE,null=True, blank=True, related_name='teacher')
+    count_correct_test = models.TextField(max_length=255, null=True, blank=True)
+    count_quests = models.TextField(max_length=255, null=True, blank=True)
 
     def __str__(self):
         return self.title
 
     def save(self):
         if 'files/' not in str(self.file):
-            self.title = str(self.student)+"_"+str(self.message)[:4]
+            self.title = str(self.student)+"_"+str(self.education_material)+"_"+str(self.pk)
         super(CompletedEx, self).save()
 
     class Meta:
@@ -122,3 +127,29 @@ class Grades(models.Model):
     def change_grade(self, new_grade):
         self.grade = new_grade
         super(Grades, self).save()
+
+
+class StudyTest(models.Model):
+    title = models.CharField(blank=True, null=True, max_length=255)
+    question = models.ManyToManyField('QuestionForTest', blank=True)
+
+    def __str__(self):
+        return self.title
+
+
+
+class QuestionForTest(models.Model):
+    question_text = models.CharField(blank=True, null=True, max_length=255)
+    choise = models.ManyToManyField('Choise', blank=True)
+
+    def __str__(self):
+        return self.question_text
+
+
+
+class Choise(models.Model):
+    answer = models.CharField(blank=True, null=True, max_length=255)
+    is_correct = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.answer

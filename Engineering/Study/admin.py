@@ -25,6 +25,9 @@ admin.site.register(models.Sections_of_modules)
 admin.site.register(models.FilesForEx)
 # admin.site.register(models.CompletedEx)
 # admin.site.register(models.Grades)
+admin.site.register(models.Choise)
+admin.site.register(models.StudyTest)
+admin.site.register(models.QuestionForTest)
 
 
 # Register your models here.

@@ -16,3 +16,8 @@ def split(value, key):
         Returns the value turned into a list.
     """
     return value.split(key)
+
+@register.filter(name='percent')
+def percent(value, key):
+    return (float(value) * 1)/float(key)
+

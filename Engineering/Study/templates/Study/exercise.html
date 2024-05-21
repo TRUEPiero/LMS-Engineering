@@ -21,6 +21,9 @@
                         <p class='fw-400 author'>{{object.author.first_name|add:" "|add:object.author.last_name}}</p>
                         <p class='fw-400'>{{object.date_created}}</p>
                     </div>
+                    {% if object.deadline %}
+                        <p class='fw-400 fz-14'>Дата сдачи: {{object.deadline}}</p>
+                    {% endif %}
                 </div>
                 {% if perms.Study.add_education_materials %}
                     <div class="dropdown">
@@ -62,9 +65,7 @@
                     {% endif %}
                 {% endwith %}
             </div>
-            <div class="border-line">
-
-            </div>
+            <div class="border-line"></div>
             {% if completed_ex %}
             <div class="completed-exercises">
                 {% for i,grade in completed_ex.items %}
@@ -85,7 +86,7 @@
 
                         {% if i.file %}
                             <div class="comp-line">
-                                <a class='file-line' href={{i.file.url}}>{{i.title}}</a>
+                                <a class='file-line' href={{i.file.url}}>{{i.file}}</a>
                             </div>
                         {% endif %}
 
@@ -111,22 +112,52 @@
                                 </div>
                             </div>
                         {% endif %}
+                        {% if i.count_correct_test %}
+                            <div class="grade_line">
+                                <label for="value-line">Результат:</label>
+                                <p class='value-line'>{{i.count_correct_test}} из {{i.count_quests|add:"    "}}<span class='percent'>{{i.count_correct_test|percent:i.count_quests}}%</span></p>
+                            </div>
+                        {% endif %}
                     </div>
                 {% endfor %}
             </div>
             {% endif %}
-            {% if perms.Study.add_completedex %}
-                <div class="send-completed">
-                    <p class='try-count'>Новая попытка</p>
-                    <form action={% url "new_completed" object.slug%} method='POST' enctype='multipart/form-data'>
+            {% if object.type.title == 'Практическое задание' %}
+                {% if perms.Study.add_completedex %}
+                    <div class="send-completed">
+                        <p class='try-count'>Новая попытка</p>
+                        <form action={% url "new_completed" object.slug%} method='POST' enctype='multipart/form-data'>
+                            {% csrf_token %}
+                            <p><textarea type="text" name="message" id="message" cols='180' rows='8'></textarea></p>
+                            <div class="but-line">
+                                <p><input type="file" name="file" id="file"></p>
+                                <p><button type="submit">Отправить</button></p>
+                            </div>
+                        </form>
+                    </div>
+                {% endif %}
+            {% elif object.type.title == 'Тестирование' %}
+                {% if completed_ex|length == 0 %}
+                    <form action={% url "new_completed" object.slug%} method='POST' class='test_form'>
                         {% csrf_token %}
-                        <p><textarea type="text" name="message" id="message" cols='180' rows='8'></textarea></p>
-                        <div class="but-line">
-                            <p><input type="file" name="file" id="file"></p>
-                            <p><button type="submit">Отправить</button></p>
-                        </div>
+                        <input type="text" name='count_questions' value={{object.test.question.count}} style='display: none;'>
+                        {% with object.test.question.all as questions %}
+                            {% if questions %}
+                                {% for quest in questions %}
+                                    <p class='question_title'>{{quest}}</p>
+                                    {% with quest.choise.all as choises %}
+                                        {% if choises %}
+                                            {% for choise in choises %}
+                                                <p class='choise_title'><input type="radio" value={{choise.answer}} name={{quest.pk}} required>{{choise.answer}}</p>
+                                            {% endfor %}
+                                        {% endif %}
+                                    {% endwith %}
+                                {% endfor %}
+                            {% endif %}
+                        {% endwith %}
+                        <p><button type="submit">Отправить</button></p>
                     </form>
-                </div>
+                {% endif %}
             {% endif %}
         </div>
     </main>

@@ -17,7 +17,7 @@ class AddNewExercise(forms.ModelForm):
 
     class Meta:
         model = Education_materials
-        fields = ['title', 'discription', 'module', 'type', 'deadline', 'files']
+        fields = ['title', 'discription', 'module', 'type', 'deadline', 'files', 'test']
         widgets = {
             'discription': forms.Textarea(attrs={'class':'text-area_input'})
         }

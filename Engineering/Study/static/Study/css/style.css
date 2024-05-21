@@ -34,16 +34,9 @@ body {
     font-weight: 200;
 }
 
-.circle {
-    width: 70px;
-    height: 70px;
-    border-radius: 100%;
-    background-color: #26477F;
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    display: none;
-    border: none;
+.fz-14 {
+    font-size: 14px;
+    margin: 0px 0 10px 0;
 }
 
 .center {
@@ -330,7 +323,44 @@ main a {
     margin: auto;
     width: 80%;
 }
+.burger_block {
+    width: 70px;
+    height: 70px;
+    background-color: #26477F;
+    position: fixed;
+    right: 20px;
+    bottom: 100px;
+    border-radius: 100%;
+    display: none;
+}
+.burger_menu {
+    display: none;
+}
 
+.burger_link {
+    display: none;
+    position: fixed;
+    right: 121px;
+    bottom: 144px;
+    color: white;
+    text-decoration: none;
+}
+.burger_link {
+    display: none;
+    position: fixed;
+    right: 120px;
+    bottom: 160px;
+    color: white;
+    text-decoration: none;
+}
+.burger_link2 {
+    display: none;
+    position: fixed;
+    right: 139px;
+    bottom: 130px;
+    color: white;
+    text-decoration: none;
+}
 .btns {
     padding: 10px;
     display: flex;
@@ -598,7 +628,7 @@ a.create_ex {
 .completed-exercises p {
     font-weight: 400;
     font-size: 16px;
-    word-break: break-all;
+    word-break: break-word;
 }
 
 .try-count {
@@ -619,6 +649,7 @@ a.create_ex {
 
 .file-line {
     margin-left: 140px;
+    word-break: break-all;
 }
 
 .send-completed {
@@ -739,6 +770,7 @@ a.create_ex {
     color: white;
     border-radius: 3px;
     height: 40px;
+    margin-top: 7px;
 }
 .update-create-form *{
     font-size: 16px;
@@ -851,9 +883,34 @@ a.create_ex {
     display: block;
     max-width: 190px;
 }
+.test_form button {
+    border: none;
+    background-color: #26477F;
+    color: #ffffff;
+    border-radius: 5px;
+    width: 150px;
+    height: 30px;
+    margin-top: 15px;
+}
+.percent {
+    margin-left: 10px;
+    font-weight: 500;
+    color: #26477F;
+}
+.question_title {
+    font-size: 16px;
+    line-height: 1.3;
+    word-break: break-all;
+    margin: 15px 0 0 0;
+    font-weight: 400;
+}
+.choise_title {
+    margin: 5px 0 0 10px;
+    font-weight: 400;
 
-.blue {
-
+}
+.choise_title input {
+    margin: 0 5px 0 10px;
 }
 /* ------------------------------------------------- */
 footer {

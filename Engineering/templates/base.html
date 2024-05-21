@@ -36,9 +36,16 @@
         </header>
         {% block content %}
         {% endblock %}
-        <button class="circle">
-            <img src="" alt="">
-        </button>
+        <div>
+            <input type="checkbox" name="burger_menu" id="burger_menu" class='burger_menu'>
+            <label for="burger_menu" class="burger_block">
+                <a href={% url "profile" %} class='burger_link'>Профиль</a>
+                <a href={% url "logout" %} class='burger_link2'>Выход</a>
+                <img src={% static "Study\images\burger-menu.svg" %} alt="">
+            </label>
+
+        </div>
+
         <footer>
             <p>2023 Copyright Text</p>
         </footer>

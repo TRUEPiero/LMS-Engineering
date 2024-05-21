@@ -25,28 +25,35 @@
                                 <div class="above_one_ex">
                                     {% for ex,grade in user_value.items %}
                                         <div class="one_ex">
-                                            <div class="above_date_ex">
-                                                <p>{{ex.date_created}}</p>
-                                                <p>{{ex.message}}</p>
-                                                {% if ex.file %}
-                                                    <a href={{ex.file.url}} target=_blank>{{ex.file.url|split:"/"|last}}</a>
-                                                {% endif %}
-                                            </div>
-                                            <form action={% url "new_grade" object.slug%} method='POST' id="myForm" >
-                                                {% csrf_token %}
-                                                <p class='nonedisplay'><input type="text" id="completed_ex_id" name="completed_ex_id" value={{ex.pk}} /></p>
-                                                {% if grade %}
-                                                    {% if grade.message %}
-                                                        <p class='message_123'><span>Сообщение: </span>{{grade.message}}</p>
+                                            {% if ex.count_correct_test %}
+                                                <div class="above_date_ex">
+                                                    <p>{{ex.date_created}}</p>
+                                                    <p class='value-line'><span>Результат: </span>{{ex.count_correct_test}} из {{ex.count_quests|add:"    "}}<span class='percent'>{{ex.count_correct_test|percent:ex.count_quests}}%</span></p>
+                                                </div>
+                                            {% else %}
+                                                <div class="above_date_ex">
+                                                    <p>{{ex.date_created}}</p>
+                                                    <p>{{ex.message}}</p>
+                                                    {% if ex.file %}
+                                                        <a href={{ex.file.url}} target=_blank>{{ex.file.url|split:"/"|last}}</a>
                                                     {% endif %}
-                                                    <p class='grade_123'><span>Оценка: </span>{{grade.grade}}</p>
-                                                {% else %}
-                                                    <p><input type="text" id="message" name="message" placeholder='Сообщение'/></p>
-                                                    <p><input type="text" id="grade" name="grade" required minlength="1" maxlength="1" size="1" placeholder='Оценка' class='c123'/></p>
-                                                    <p><button type="submit">Отправить</button></p>
+                                                </div>
+                                                <form action={% url "new_grade" object.slug%} method='POST' id="myForm" >
+                                                    {% csrf_token %}
+                                                    <p class='nonedisplay'><input type="text" id="completed_ex_id" name="completed_ex_id" value={{ex.pk}} /></p>
+                                                    {% if grade %}
+                                                        {% if grade.message %}
+                                                            <p class='message_123'><span>Сообщение: </span>{{grade.message}}</p>
+                                                        {% endif %}
+                                                        <p class='grade_123'><span>Оценка: </span>{{grade.grade}}</p>
+                                                    {% else %}
+                                                        <p><input type="text" id="message" name="message" placeholder='Сообщение'/></p>
+                                                        <p><input type="text" id="grade" name="grade" required minlength="1" maxlength="1" size="1" placeholder='Оценка' class='c123'/></p>
+                                                        <p><button type="submit">Отправить</button></p>
 
-                                                {% endif %}
-                                            </form>
+                                                    {% endif %}
+                                                </form>
+                                            {% endif %}
                                         </div>
                                     {% endfor %}
                                 </div>
