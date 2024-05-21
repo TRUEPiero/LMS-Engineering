@@ -165,17 +165,20 @@
     }
     .block-image {
         display: inline-grid;
-        margin: 0;
+        margin: auto;
     }
     .block-image img {
         margin: auto;
-        width: 50%;
+        width: 70%;
+    }
+    .mobile_change_photo {
+        height: 100%;
     }
     .btns {
         display: none;
     }
     .block-inf {
-        margin: 20px 10px 0 10px;
+        margin: 0px 10px 0 10px;
         font-size: 14px;
     }
     .module-type {
@@ -214,5 +217,21 @@
     }
     .choise_title {
         font-size: 14px;
+    }
+    .mobile_btn {
+        display: block;
+    }
+    .input-file span {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        background-color: #FF6500;
+        height: 40px;
+        width: 40px;
+        border-radius: 100%;
+        position: absolute;
+        top: -55px;
+        right: -140px;
     }
 }

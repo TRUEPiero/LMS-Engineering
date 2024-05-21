@@ -319,10 +319,13 @@ main a {
     display: inline-grid;
     margin: 10px 0;
 }
-.block-image img {
+.undefined_photo {
     margin: auto;
     width: 80%;
+
 }
+
+
 .burger_block {
     width: 70px;
     height: 70px;
@@ -890,7 +893,7 @@ a.create_ex {
     border-radius: 5px;
     width: 150px;
     height: 30px;
-    margin-top: 15px;
+    margin-top: 20px;
 }
 .percent {
     margin-left: 10px;
@@ -901,16 +904,56 @@ a.create_ex {
     font-size: 16px;
     line-height: 1.3;
     word-break: break-all;
-    margin: 15px 0 0 0;
+    margin: 20px 0 0 0;
     font-weight: 400;
 }
 .choise_title {
-    margin: 5px 0 0 10px;
+    margin: 10px 0 0 20px;
     font-weight: 400;
 
 }
 .choise_title input {
     margin: 0 5px 0 10px;
+}
+.input-file {
+	position: relative;
+	display: inline-block;
+}
+.input-file span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	border: none;
+    background-color:#26477F ;
+    color: white;
+    margin: 5px 0;
+    height: 38px;
+    width: 200px;
+    border-radius: 5px;
+    font-weight: 200;
+    font-size: 14px;
+}
+.input-file input[type=file] {
+	position: absolute;
+	z-index: -1;
+	opacity: 0;
+	display: block;
+	width: 0;
+	height: 0;
+}
+
+/* Focus */
+.input-file input[type=file]:focus + span {
+	box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+
+
+/* Disabled */
+.input-file input[type=file]:disabled + span {
+	background-color: #eee;
+}
+.mobile_btn {
+    display: none;
 }
 /* ------------------------------------------------- */
 footer {

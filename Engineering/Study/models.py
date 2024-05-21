@@ -137,6 +137,10 @@ class StudyTest(models.Model):
         return self.title
 
 
+    class Meta:
+        verbose_name = 'Тесты'
+
+
 
 class QuestionForTest(models.Model):
     question_text = models.CharField(blank=True, null=True, max_length=255)
@@ -146,6 +150,10 @@ class QuestionForTest(models.Model):
         return self.question_text
 
 
+    class Meta:
+        verbose_name = 'Вопросы тестов'
+
+
 
 class Choise(models.Model):
     answer = models.CharField(blank=True, null=True, max_length=255)
@@ -153,3 +161,7 @@ class Choise(models.Model):
 
     def __str__(self):
         return self.answer
+
+
+    class Meta:
+        verbose_name = 'Вариарты ответов'

@@ -15,3 +15,6 @@ class StudentGroup(models.Model):
 
     def __str__(self) -> str:
         return self.group_title
+
+    class Meta:
+        verbose_name = 'Группы студентов'

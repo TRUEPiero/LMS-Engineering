@@ -148,7 +148,7 @@
                                     {% with quest.choise.all as choises %}
                                         {% if choises %}
                                             {% for choise in choises %}
-                                                <p class='choise_title'><input type="radio" value={{choise.answer}} name={{quest.pk}} required>{{choise.answer}}</p>
+                                                <p class='choise_title'><input type="radio" value={{choise.answer}} name={{quest.pk}} required >{{choise.answer}}</p>
                                             {% endfor %}
                                         {% endif %}
                                     {% endwith %}

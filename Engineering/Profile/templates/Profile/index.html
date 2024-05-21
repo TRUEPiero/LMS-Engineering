@@ -5,10 +5,52 @@
     <main>
         <div class="login-main">
             <div class="block-image">
-                <img src={% static "Profile\images\photo.svg" %} alt="profile">
+                {% if user.photo %}
+                    <style>
+                        .user_photo_block {
+                            width: 220px;
+                            height: 220px;
+                            border-radius:100%;
+                            {% comment %} border:1px solid black; {% endcomment %}
+                            background: url("{{ user.photo.url }}") center no-repeat;
+                            background-size: cover;
+                        }
+                        @media (max-width: 768px) {
+                            .user_photo_block {
+                                width: 150px;
+                                height: 150px;
+                                border-radius: 100%;
+                                background: url("{{ user.photo.url }}") center no-repeat;
+                                background-size: cover;
+                            }
+                        }
+                    </style>
+                    <div class="user_photo_block"></div>
+                {% else %}
+                    <img src={% static "Profile\images\photo.svg" %} alt="profile" class='undefined_photo'>
+                {% endif %}
                 <div class="btns">
-                    <button class='change-photo'>ИЗМЕНИТЬ ФОТО</button>
-                    <button class='delete-photo'>УДАЛИТЬ ФОТО</button>
+                    {% comment %} <button class='change-photo' >ИЗМЕНИТЬ ФОТО</button> {% endcomment %}
+                    <form method="POST" enctype='multipart/form-data' action={% url "change_photo" %} id='uploadForm'>
+                        {% csrf_token %}
+                        <label class="input-file">
+                            <input type="file" name="file" id="file" onchange="this.form.submit()">
+                            <span>ИЗМЕНИТЬ ФОТО</span>
+                         </label>
+                    </form>
+
+                    <form action={% url "delete_photo" %} method='get'>
+                        <button class='delete-photo'>УДАЛИТЬ ФОТО</button>
+                    </form>
+                </div>
+                <div class="mobile_btn">
+                    <form method="POST" enctype='multipart/form-data' action={% url "change_photo" %} id='uploadForm'>
+                        {% csrf_token %}
+                        <label class="input-file">
+                            <input type="file" name="file" id="file" onchange="this.form.submit()">
+                            <span><img src={% static "Profile/images/Vector.svg" %} alt="" class='mobile_change_photo'></span>
+                         </label>
+                    </form>
                 </div>
             </div>
             <div class="block-inf">
