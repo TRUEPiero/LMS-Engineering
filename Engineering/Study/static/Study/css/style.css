@@ -819,6 +819,7 @@ a.create_ex {
     margin: 0;
     color: #FF6500;
     font-weight: 400;
+    word-break: break-all;
 }
 .one_ex a:hover {
     color: #FF6500;

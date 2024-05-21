@@ -69,7 +69,7 @@ class Education_materials(models.Model):
     deadline = models.DateField(blank=True, null=True, verbose_name='Дата сдачи')
     files = models.ManyToManyField('FilesForEx', blank=True, verbose_name='Файлы')
     author = models.ForeignKey(get_user_model(),on_delete=models.SET_NULL,null=True, verbose_name='Автор')
-    test = models.ForeignKey('StudyTest', on_delete=models.SET_NULL, null=True)
+    test = models.ForeignKey('StudyTest', on_delete=models.SET_NULL, null=True, blank=True)
     start = models.BooleanField(default=False)
     finish = models.BooleanField(default=False)
 

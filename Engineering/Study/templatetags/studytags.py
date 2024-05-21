@@ -19,5 +19,4 @@ def split(value, key):
 
 @register.filter(name='percent')
 def percent(value, key):
-    return (float(value) * 1)/float(key)
-
+    return int((float(value) * 1)/float(key)*100)
