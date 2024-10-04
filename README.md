@@ -8,7 +8,7 @@
 
 ```git clone https://github.com/TRUEPiero/LMS-Engineering.git```
 
-2. Переход в директорию Oxygen
+2. Переход в директорию 
 
 ```cd LMS Engineering```
 
